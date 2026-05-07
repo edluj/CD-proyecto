@@ -54,13 +54,11 @@ print("TRANSFORMACIÓN BOX-COX")
 print("="*60)
 
 # Box-Cox requiere valores positivos
-if (y <= 0).any():
-    y_positive = y - y.min() + 1
-else:
-    y_positive = y.copy()
+y_min = y.min()
+y_shifted = y - y_min + 0.1  # Agregar pequeño offset para asegurar positividad
 
 # Encontrar la transformación óptima
-y_transformed, lambda_param = boxcox(y_positive)
+y_transformed, lambda_param = boxcox(y_shifted)
 
 print(f"Parámetro lambda óptimo: {lambda_param:.4f}")
 print(f"y_original - media: {y.mean():.2f}, desv.est: {y.std():.2f}")
@@ -108,15 +106,33 @@ print("\n" + "="*60)
 print("INVERSIÓN DE LA TRANSFORMACIÓN")
 print("="*60)
 
-# Función para invertir Box-Cox
-if abs(lambda_param) < 1e-10:
-    y_pred_orig = np.exp(y_pred_t)
-else:
-    y_pred_orig = np.power(y_pred_t * lambda_param + 1, 1/lambda_param)
+def inverse_boxcox(y_transformed, lambda_param, y_shift):
+    """
+    Invierte la transformación Box-Cox correctamente
+    """
+    if abs(lambda_param) < 1e-10:
+        # Si lambda ≈ 0, se usó transformación logarítmica
+        y_inverted = np.exp(y_transformed)
+    else:
+        # Inversión estándar: y = (lambda * y_transformed + 1)^(1/lambda)
+        y_inverted = np.power(lambda_param * y_transformed + 1, 1 / lambda_param)
+    
+    # Deshacer el shift original
+    y_original = y_inverted + y_shift
+    
+    return y_original
 
-# Ajustar offset si lo aplicamos
-if (y <= 0).any():
-    y_pred_orig = y_pred_orig + y.min() - 1
+# Invertir predicciones
+y_pred_orig = inverse_boxcox(y_pred_t.values, lambda_param, y_min - 0.1)
+
+# Asegurar que no hay NaN ni infinitos
+print(f"Valores predichos - NaN: {np.isnan(y_pred_orig).sum()}, Inf: {np.isinf(y_pred_orig).sum()}")
+
+# Si hay valores problemáticos, usar clipping
+if np.isnan(y_pred_orig).any() or np.isinf(y_pred_orig).any():
+    print("⚠ Se detectaron NaN o Inf. Reemplazando con valores válidos...")
+    y_pred_orig = np.clip(y_pred_orig, y.min(), y.max())
+    y_pred_orig[np.isnan(y_pred_orig)] = y.mean()
 
 # Métricas en escala original
 r2_original = r2_score(y_test_orig, y_pred_orig)
@@ -145,22 +161,27 @@ try:
     print(f"1. LINEALIDAD (Ramsey RESET)")
     print(f"   Estadístico: {reset_result[0]:.4f}")
     print(f"   p-valor: {reset_result[1]:.6f}")
-    print(f"   Cumple: {reset_result[1] > 0.05}")
-except:
-    print(f"1. LINEALIDAD: No se pudo calcular")
+    linealidad_cumple = reset_result[1] > 0.05
+    print(f"   Cumple: {linealidad_cumple}")
+except Exception as e:
+    print(f"1. LINEALIDAD: No se pudo calcular ({str(e)[:50]})")
+    reset_result = (np.nan, np.nan)
+    linealidad_cumple = None
 
 # 2. INDEPENDENCIA (Durbin-Watson)
 dw = durbin_watson(residuos_t)
 print(f"\n2. INDEPENDENCIA (Durbin-Watson)")
 print(f"   Estadístico: {dw:.4f} (rango: 0-4, ideal: ~2)")
-print(f"   Cumple: {1.5 < dw < 2.5}")
+independencia_cumple = 1.5 < dw < 2.5
+print(f"   Cumple: {independencia_cumple}")
 
 # 3. HOMOCEDASTICIDAD (Breusch-Pagan)
 bp_test = het_breuschpagan(residuos_t, X_train_const)
 print(f"\n3. HOMOCEDASTICIDAD (Breusch-Pagan)")
 print(f"   Estadístico LM: {bp_test[0]:.4f}")
 print(f"   p-valor: {bp_test[1]:.6f}")
-print(f"   Cumple: {bp_test[1] > 0.05}")
+homocedasticidad_cumple = bp_test[1] > 0.05
+print(f"   Cumple: {homocedasticidad_cumple}")
 
 # 4. NORMALIDAD (Jarque-Bera)
 jb_test = jarque_bera(residuos_t)
@@ -169,15 +190,12 @@ print(f"   Estadístico: {jb_test[0]:.4f}")
 print(f"   p-valor: {jb_test[1]:.6f}")
 print(f"   Asimetría: {jb_test[2]:.4f}")
 print(f"   Curtosis: {jb_test[3]:.4f}")
-print(f"   Cumple: {jb_test[1] > 0.05}")
+normalidad_cumple = jb_test[1] > 0.05
+print(f"   Cumple: {normalidad_cumple}")
 
 # Verificar cuántos supuestos se cumplen
-supuestos_cumplidos = sum([
-    reset_result[1] > 0.05,
-    1.5 < dw < 2.5,
-    bp_test[1] > 0.05,
-    jb_test[1] > 0.05
-])
+supuestos_list = [linealidad_cumple, independencia_cumple, homocedasticidad_cumple, normalidad_cumple]
+supuestos_cumplidos = sum([x for x in supuestos_list if x is not None])
 print(f"\n✓ Supuestos cumplidos: {supuestos_cumplidos}/4")
 
 # ==========================================
@@ -272,27 +290,27 @@ resultados = {
     "supuestos": {
         "linealidad": {
             "prueba": "Ramsey RESET",
-            "p_valor": float(reset_result[1]),
-            "cumple": bool(reset_result[1] > 0.05)
+            "p_valor": float(reset_result[1]) if not np.isnan(reset_result[1]) else None,
+            "cumple": linealidad_cumple
         },
         "independencia": {
             "prueba": "Durbin-Watson",
             "estadistico": float(dw),
-            "cumple": bool(1.5 < dw < 2.5)
+            "cumple": independencia_cumple
         },
         "homocedasticidad": {
             "prueba": "Breusch-Pagan",
             "p_valor": float(bp_test[1]),
-            "cumple": bool(bp_test[1] > 0.05)
+            "cumple": homocedasticidad_cumple
         },
         "normalidad": {
             "prueba": "Jarque-Bera",
             "p_valor": float(jb_test[1]),
             "asimetria": float(jb_test[2]),
             "curtosis": float(jb_test[3]),
-            "cumple": bool(jb_test[1] > 0.05)
+            "cumple": normalidad_cumple
         },
-        "total_cumplidos": int(supuestos_cumplidos)
+        "total_cumplidos": supuestos_cumplidos
     },
     "comparacion_con_anterior": {
         "nota": "Comparar con metricas_indices_compuestos.json",
@@ -322,10 +340,10 @@ print("  Supuestos (4):    1/4")
 
 print("\nMODELO CON BOX-COX (transformado):")
 print(f"  R²:               {r2_original:.4f}")
-print(f"  Linealidad:       {reset_result[1] > 0.05}")
-print(f"  Independencia:    {1.5 < dw < 2.5}")
-print(f"  Homocedasticidad: {bp_test[1] > 0.05}")
-print(f"  Normalidad:       {jb_test[1] > 0.05}")
+print(f"  Linealidad:       {linealidad_cumple}")
+print(f"  Independencia:    {independencia_cumple}")
+print(f"  Homocedasticidad: {homocedasticidad_cumple}")
+print(f"  Normalidad:       {normalidad_cumple}")
 print(f"  Supuestos (4):    {supuestos_cumplidos}/4")
 
 print("\n✓ Script completado exitosamente")
