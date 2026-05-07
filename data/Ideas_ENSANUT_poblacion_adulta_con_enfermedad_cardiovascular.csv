@@ -1,0 +1,514 @@
+﻿año,nivel_de_agregacion,sexo,grupo_de_edad,tipo_de_localidad_rural_o_urbano,region_geografica_de_Mexico,nivel_educativo,nivel_socioeconomico,presencia_de_discapacidad,porcentaje_de_diagnostico_de_enfermedad_cardiovascular,intervalo_de_confianza_inferior,intervalo_de_confianza_superior,poblacion_representada_con_diagnostico_de_enfermedad_cardiovascular
+2000,nacional,-,-,-,-,-,-,-,,,,
+2000,estratificado,hombre,-,-,-,-,-,-,,,,
+2000,estratificado,mujer,-,-,-,-,-,-,,,,
+2000,estratificado,-,20-39,-,-,-,-,-,,,,
+2000,estratificado,-,40-59,-,-,-,-,-,,,,
+2000,estratificado,-,60+,-,-,-,-,-,,,,
+2000,estratificado,-,-,rural,-,-,-,-,,,,
+2000,estratificado,-,-,urbano,-,-,-,-,,,,
+2000,estratificado,-,-,-,norte ,-,-,-,,,,
+2000,estratificado,-,-,-,centro,-,-,-,,,,
+2000,estratificado,-,-,-,cdmx,-,-,-,,,,
+2000,estratificado,-,-,-,sur,-,-,-,,,,
+2000,estratificado,-,-,-,-,primaria o menos,-,-,,,,
+2000,estratificado,-,-,-,-,secundaria,-,-,,,,
+2000,estratificado,-,-,-,-,media,-,-,,,,
+2000,estratificado,-,-,-,-,superior,-,-,,,,
+2000,estratificado,-,-,-,-,-,bajo,-,,,,
+2000,estratificado,-,-,-,-,-,medio,-,,,,
+2000,estratificado,-,-,-,-,-,alto,-,,,,
+2000,estratificado,-,-,-,-,-,-,no,,,,
+2000,estratificado,-,-,-,-,-,-,si,,,,
+2000,estratificado,hombre,20-39,-,-,-,-,-,,,,
+2000,estratificado,hombre,40-59,-,-,-,-,-,,,,
+2000,estratificado,hombre,60+,-,-,-,-,-,,,,
+2000,estratificado,mujer,20-39,-,-,-,-,-,,,,
+2000,estratificado,mujer,40-59,-,-,-,-,-,,,,
+2000,estratificado,mujer,60+,-,-,-,-,-,,,,
+2000,estratificado,hombre,-,rural,-,-,-,-,,,,
+2000,estratificado,hombre,-,urbano,-,-,-,-,,,,
+2000,estratificado,mujer,-,rural,-,-,-,-,,,,
+2000,estratificado,mujer,-,urbano,-,-,-,-,,,,
+2000,estratificado,hombre,-,-,norte ,-,-,-,,,,
+2000,estratificado,hombre,-,-,centro,-,-,-,,,,
+2000,estratificado,hombre,-,-,cdmx,-,-,-,,,,
+2000,estratificado,hombre,-,-,sur,-,-,-,,,,
+2000,estratificado,mujer,-,-,norte ,-,-,-,,,,
+2000,estratificado,mujer,-,-,centro,-,-,-,,,,
+2000,estratificado,mujer,-,-,cdmx,-,-,-,,,,
+2000,estratificado,mujer,-,-,sur,-,-,-,,,,
+2000,estratificado,hombre,-,-,-,primaria o menos,-,-,,,,
+2000,estratificado,hombre,-,-,-,secundaria,-,-,,,,
+2000,estratificado,hombre,-,-,-,media,-,-,,,,
+2000,estratificado,hombre,-,-,-,superior,-,-,,,,
+2000,estratificado,mujer,-,-,-,primaria o menos,-,-,,,,
+2000,estratificado,mujer,-,-,-,secundaria,-,-,,,,
+2000,estratificado,mujer,-,-,-,media,-,-,,,,
+2000,estratificado,mujer,-,-,-,superior,-,-,,,,
+2000,estratificado,hombre,-,-,-,-,bajo,-,,,,
+2000,estratificado,hombre,-,-,-,-,medio,-,,,,
+2000,estratificado,hombre,-,-,-,-,alto,-,,,,
+2000,estratificado,mujer,-,-,-,-,bajo,-,,,,
+2000,estratificado,mujer,-,-,-,-,medio,-,,,,
+2000,estratificado,mujer,-,-,-,-,alto,-,,,,
+2000,estratificado,hombre,-,-,-,-,-,no,,,,
+2000,estratificado,hombre,-,-,-,-,-,si,,,,
+2000,estratificado,mujer,-,-,-,-,-,no,,,,
+2000,estratificado,mujer,-,-,-,-,-,si,,,,
+2006,nacional,-,-,-,-,-,-,-,4.5,4.2,4.8,2685000
+2006,estratificado,hombre,-,-,-,-,-,-,4.0,3.6,4.4,1082000
+2006,estratificado,mujer,-,-,-,-,-,-,4.9,4.5,5.3,1603000
+2006,estratificado,-,20-39,-,-,-,-,-,2.5,2.2,2.8,742000
+2006,estratificado,-,40-59,-,-,-,-,-,4.5,4.0,5.1,895000
+2006,estratificado,-,60+,-,-,-,-,-,10.4,9.3,11.6,1049000
+2006,estratificado,-,-,rural,-,-,-,-,3.8,3.3,4.3,465000
+2006,estratificado,-,-,urbano,-,-,-,-,4.7,4.3,5.1,2221000
+2006,estratificado,-,-,-,norte ,-,-,-,5.0,4.5,5.5,593000
+2006,estratificado,-,-,-,centro,-,-,-,4.8,4.2,5.4,1114000
+2006,estratificado,-,-,-,cdmx,-,-,-,3.9,2.8,5.3,270000
+2006,estratificado,-,-,-,sur,-,-,-,4.0,3.5,4.5,710000
+2006,estratificado,-,-,-,-,primaria o menos,-,-,5.4,4.9,5.9,1413000
+2006,estratificado,-,-,-,-,secundaria,-,-,3.7,3.1,4.4,398000
+2006,estratificado,-,-,-,-,media,-,-,3.3,2.6,4.3,254000
+2006,estratificado,-,-,-,-,superior,-,-,4.8,3.8,6.2,232000
+2006,estratificado,-,-,-,-,-,bajo,-,3.4,2.9,3.9,459000
+2006,estratificado,-,-,-,-,-,medio,-,5.1,4.5,5.7,781000
+2006,estratificado,-,-,-,-,-,alto,-,5.2,4.6,5.9,1058000
+2006,estratificado,-,-,-,-,-,-,no,,,,
+2006,estratificado,-,-,-,-,-,-,si,,,,
+2006,estratificado,hombre,20-39,-,-,-,-,-,2.1,1.7,2.5,281000
+2006,estratificado,hombre,40-59,-,-,-,-,-,4.0,3.2,4.9,363000
+2006,estratificado,hombre,60+,-,-,-,-,-,9.7,8.2,11.5,440000
+2006,estratificado,mujer,20-39,-,-,-,-,-,2.8,2.4,3.3,462000
+2006,estratificado,mujer,40-59,-,-,-,-,-,5.0,4.3,5.8,533000
+2006,estratificado,mujer,60+,-,-,-,-,-,11.0,9.6,12.5,610000
+2006,estratificado,hombre,-,rural,-,-,-,-,2.9,2.4,3.6,167000
+2006,estratificado,hombre,-,urbano,-,-,-,-,4.3,3.8,4.8,916000
+2006,estratificado,mujer,-,rural,-,-,-,-,4.5,3.7,5.3,299000
+2006,estratificado,mujer,-,urbano,-,-,-,-,5.0,4.5,5.5,1305000
+2006,estratificado,hombre,-,-,norte ,-,-,-,4.2,3.6,4.9,232000
+2006,estratificado,hombre,-,-,centro,-,-,-,4.3,3.6,5.2,450000
+2006,estratificado,hombre,-,-,cdmx,-,-,-,4.5,2.9,6.7,144000
+2006,estratificado,hombre,-,-,sur,-,-,-,3.2,2.7,3.8,257000
+2006,estratificado,mujer,-,-,norte ,-,-,-,5.7,5.0,6.4,361000
+2006,estratificado,mujer,-,-,centro,-,-,-,5.2,4.4,6.0,664000
+2006,estratificado,mujer,-,-,cdmx,-,-,-,3.4,2.1,5.4,126000
+2006,estratificado,mujer,-,-,sur,-,-,-,4.6,3.9,5.4,453000
+2006,estratificado,hombre,-,-,-,primaria o menos,-,-,4.8,4.2,5.5,523000
+2006,estratificado,hombre,-,-,-,secundaria,-,-,3.4,2.6,4.4,178000
+2006,estratificado,hombre,-,-,-,media,-,-,2.9,2.0,4.1,95000
+2006,estratificado,hombre,-,-,-,superior,-,-,4.9,3.4,7.1,131000
+2006,estratificado,mujer,-,-,-,primaria o menos,-,-,5.8,5.2,6.5,891000
+2006,estratificado,mujer,-,-,-,secundaria,-,-,3.9,3.1,5.0,221000
+2006,estratificado,mujer,-,-,-,media,-,-,3.7,2.6,5.2,159000
+2006,estratificado,mujer,-,-,-,superior,-,-,4.7,3.3,6.7,102000
+2006,estratificado,hombre,-,-,-,-,bajo,-,2.8,2.3,3.5,172000
+2006,estratificado,hombre,-,-,-,-,medio,-,4.5,3.7,5.4,303000
+2006,estratificado,hombre,-,-,-,-,alto,-,4.9,4.1,5.9,452000
+2006,estratificado,mujer,-,-,-,-,bajo,-,3.8,3.2,4.5,287000
+2006,estratificado,mujer,-,-,-,-,medio,-,5.5,4.7,6.4,478000
+2006,estratificado,mujer,-,-,-,-,alto,-,5.5,4.6,6.4,606000
+2006,estratificado,hombre,-,-,-,-,-,no,,,,
+2006,estratificado,hombre,-,-,-,-,-,si,,,,
+2006,estratificado,mujer,-,-,-,-,-,no,,,,
+2006,estratificado,mujer,-,-,-,-,-,si,,,,
+2012,nacional,-,-,-,-,-,-,-,6.4,6.0,6.8,4485000
+2012,estratificado,hombre,-,-,-,-,-,-,6.0,5.5,6.6,1994000
+2012,estratificado,mujer,-,-,-,-,-,-,6.8,6.2,7.3,2491000
+2012,estratificado,-,20-39,-,-,-,-,-,4.0,3.5,4.4,1402000
+2012,estratificado,-,40-59,-,-,-,-,-,6.6,5.9,7.3,1558000
+2012,estratificado,-,60+,-,-,-,-,-,14.2,13.0,15.5,1526000
+2012,estratificado,-,-,rural,-,-,-,-,5.3,4.7,5.9,776000
+2012,estratificado,-,-,urbano,-,-,-,-,6.7,6.2,7.2,3710000
+2012,estratificado,-,-,-,norte ,-,-,-,6.1,5.6,6.7,850000
+2012,estratificado,-,-,-,centro,-,-,-,6.6,5.9,7.4,1757000
+2012,estratificado,-,-,-,cdmx,-,-,-,7.4,5.8,9.4,598000
+2012,estratificado,-,-,-,sur,-,-,-,6.0,5.3,6.7,1281000
+2012,estratificado,-,-,-,-,primaria o menos,-,-,8.3,7.6,8.9,2268000
+2012,estratificado,-,-,-,-,secundaria,-,-,5.5,4.8,6.4,1043000
+2012,estratificado,-,-,-,-,media,-,-,5.0,4.2,5.9,671000
+2012,estratificado,-,-,-,-,superior,-,-,5.0,4.1,6.0,504000
+2012,estratificado,-,-,-,-,-,bajo,-,5.6,5.1,6.2,1236000
+2012,estratificado,-,-,-,-,-,medio,-,6.3,5.7,7.0,1501000
+2012,estratificado,-,-,-,-,-,alto,-,7.3,6.5,8.1,1749000
+2012,estratificado,-,-,-,-,-,-,no,,,,
+2012,estratificado,-,-,-,-,-,-,si,,,,
+2012,estratificado,hombre,20-39,-,-,-,-,-,3.8,3.2,4.6,639000
+2012,estratificado,hombre,40-59,-,-,-,-,-,5.6,4.8,6.5,634000
+2012,estratificado,hombre,60+,-,-,-,-,-,14.4,12.6,16.4,722000
+2012,estratificado,mujer,20-39,-,-,-,-,-,4.1,3.6,4.7,763000
+2012,estratificado,mujer,40-59,-,-,-,-,-,7.5,6.5,8.6,924000
+2012,estratificado,mujer,60+,-,-,-,-,-,14.0,12.5,15.7,805000
+2012,estratificado,hombre,-,rural,-,-,-,-,5.0,4.3,5.9,364000
+2012,estratificado,hombre,-,urbano,-,-,-,-,6.3,5.7,7.0,1631000
+2012,estratificado,mujer,-,rural,-,-,-,-,5.5,4.7,6.4,413000
+2012,estratificado,mujer,-,urbano,-,-,-,-,7.1,6.5,7.7,2079000
+2012,estratificado,hombre,-,-,norte ,-,-,-,5.3,4.6,6.0,362000
+2012,estratificado,hombre,-,-,centro,-,-,-,6.2,5.3,7.2,772000
+2012,estratificado,hombre,-,-,cdmx,-,-,-,8.2,5.9,11.2,304000
+2012,estratificado,hombre,-,-,sur,-,-,-,5.6,4.8,6.5,558000
+2012,estratificado,mujer,-,-,norte ,-,-,-,6.9,6.1,7.7,488000
+2012,estratificado,mujer,-,-,centro,-,-,-,7.1,6.2,8.1,986000
+2012,estratificado,mujer,-,-,cdmx,-,-,-,6.7,5.1,8.8,294000
+2012,estratificado,mujer,-,-,sur,-,-,-,6.3,5.5,7.2,723000
+2012,estratificado,hombre,-,-,-,primaria o menos,-,-,8.1,7.2,9.1,990000
+2012,estratificado,hombre,-,-,-,secundaria,-,-,5.3,4.3,6.6,491000
+2012,estratificado,hombre,-,-,-,media,-,-,4.7,3.6,6.1,290000
+2012,estratificado,hombre,-,-,-,superior,-,-,4.2,3.2,5.3,225000
+2012,estratificado,mujer,-,-,-,primaria o menos,-,-,8.4,7.6,9.2,1279000
+2012,estratificado,mujer,-,-,-,secundaria,-,-,5.7,4.9,6.7,553000
+2012,estratificado,mujer,-,-,-,media,-,-,5.2,4.2,6.5,382000
+2012,estratificado,mujer,-,-,-,superior,-,-,5.9,4.4,7.8,279000
+2012,estratificado,hombre,-,-,-,-,bajo,-,5.3,4.6,6.0,553000
+2012,estratificado,hombre,-,-,-,-,medio,-,5.5,4.7,6.5,621000
+2012,estratificado,hombre,-,-,-,-,alto,-,7.2,6.1,8.5,821000
+2012,estratificado,mujer,-,-,-,-,bajo,-,5.9,5.2,6.7,683000
+2012,estratificado,mujer,-,-,-,-,medio,-,7.0,6.2,8.0,880000
+2012,estratificado,mujer,-,-,-,-,alto,-,7.3,6.3,8.4,928000
+2012,estratificado,hombre,-,-,-,-,-,no,,,,
+2012,estratificado,hombre,-,-,-,-,-,si,,,,
+2012,estratificado,mujer,-,-,-,-,-,no,,,,
+2012,estratificado,mujer,-,-,-,-,-,si,,,,
+2016,nacional,-,-,-,-,-,-,-,4.5,3.8,5.2,3179000
+2016,estratificado,hombre,-,-,-,-,-,-,4.4,3.5,5.6,1505000
+2016,estratificado,mujer,-,-,-,-,-,-,4.5,3.6,5.6,1674000
+2016,estratificado,-,20-39,-,-,-,-,-,2.7,1.9,3.8,982000
+2016,estratificado,-,40-59,-,-,-,-,-,4.7,3.6,6.1,1084000
+2016,estratificado,-,60+,-,-,-,-,-,9.4,7.4,11.8,1113000
+2016,estratificado,-,-,rural,-,-,-,-,3.5,2.7,4.5,568000
+2016,estratificado,-,-,urbano,-,-,-,-,4.8,4.0,5.7,2611000
+2016,estratificado,-,-,-,norte ,-,-,-,4.5,3.2,6.4,674000
+2016,estratificado,-,-,-,centro,-,-,-,3.1,2.4,4.1,734000
+2016,estratificado,-,-,-,cdmx,-,-,-,5.5,3.7,8.1,682000
+2016,estratificado,-,-,-,sur,-,-,-,5.4,4.0,7.1,1090000
+2016,estratificado,-,-,-,-,primaria o menos,-,-,5.4,4.4,6.7,1322000
+2016,estratificado,-,-,-,-,secundaria,-,-,5.2,3.8,7.2,1112000
+2016,estratificado,-,-,-,-,media,-,-,3.4,2.3,4.8,481000
+2016,estratificado,-,-,-,-,superior,-,-,2.3,1.3,4.1,265000
+2016,estratificado,-,-,-,-,-,bajo,-,4.0,3.0,5.2,583000
+2016,estratificado,-,-,-,-,-,medio,-,4.5,3.5,5.8,958000
+2016,estratificado,-,-,-,-,-,alto,-,4.6,3.6,5.9,1638000
+2016,estratificado,-,-,-,-,-,-,no,,,,
+2016,estratificado,-,-,-,-,-,-,si,,,,
+2016,estratificado,hombre,20-39,-,-,-,-,-,,,,
+2016,estratificado,hombre,40-59,-,-,-,-,-,4.3,3.0,6.0,460000
+2016,estratificado,hombre,60+,-,-,-,-,-,9.0,6.3,12.6,505000
+2016,estratificado,mujer,20-39,-,-,-,-,-,2.4,1.6,3.4,442000
+2016,estratificado,mujer,40-59,-,-,-,-,-,5.1,3.5,7.4,625000
+2016,estratificado,mujer,60+,-,-,-,-,-,9.7,7.3,13.0,608000
+2016,estratificado,hombre,-,rural,-,-,-,-,2.9,2.0,4.1,229000
+2016,estratificado,hombre,-,urbano,-,-,-,-,4.9,3.7,6.5,1276000
+2016,estratificado,mujer,-,rural,-,-,-,-,4.1,2.9,5.6,339000
+2016,estratificado,mujer,-,urbano,-,-,-,-,4.6,3.5,6.1,1335000
+2016,estratificado,hombre,-,-,norte ,-,-,-,,,,
+2016,estratificado,hombre,-,-,centro,-,-,-,,,,
+2016,estratificado,hombre,-,-,cdmx,-,-,-,,,,
+2016,estratificado,hombre,-,-,sur,-,-,-,,,,
+2016,estratificado,mujer,-,-,norte ,-,-,-,,,,
+2016,estratificado,mujer,-,-,centro,-,-,-,,,,
+2016,estratificado,mujer,-,-,cdmx,-,-,-,,,,
+2016,estratificado,mujer,-,-,sur,-,-,-,,,,
+2016,estratificado,hombre,-,-,-,primaria o menos,-,-,,,,
+2016,estratificado,hombre,-,-,-,secundaria,-,-,,,,
+2016,estratificado,hombre,-,-,-,media,-,-,,,,
+2016,estratificado,hombre,-,-,-,superior,-,-,,,,
+2016,estratificado,mujer,-,-,-,primaria o menos,-,-,,,,
+2016,estratificado,mujer,-,-,-,secundaria,-,-,,,,
+2016,estratificado,mujer,-,-,-,media,-,-,,,,
+2016,estratificado,mujer,-,-,-,superior,-,-,,,,
+2016,estratificado,hombre,-,-,-,-,bajo,-,3.4,2.2,5.0,237000
+2016,estratificado,hombre,-,-,-,-,medio,-,5.2,3.4,7.7,524000
+2016,estratificado,hombre,-,-,-,-,alto,-,4.4,3.0,6.6,745000
+2016,estratificado,mujer,-,-,-,-,bajo,-,4.5,3.2,6.5,347000
+2016,estratificado,mujer,-,-,-,-,medio,-,3.9,2.9,5.3,435000
+2016,estratificado,mujer,-,-,-,-,alto,-,4.8,3.4,6.8,894000
+2016,estratificado,hombre,-,-,-,-,-,no,,,,
+2016,estratificado,hombre,-,-,-,-,-,si,,,,
+2016,estratificado,mujer,-,-,-,-,-,no,,,,
+2016,estratificado,mujer,-,-,-,-,-,si,,,,
+2018,nacional,-,-,-,-,-,-,-,3.0,2.8,3.2,2469000
+2018,estratificado,hombre,-,-,-,-,-,-,2.9,2.6,3.3,1106000
+2018,estratificado,mujer,-,-,-,-,-,-,3.0,2.7,3.3,1364000
+2018,estratificado,-,20-39,-,-,-,-,-,1.4,1.2,1.7,519000
+2018,estratificado,-,40-59,-,-,-,-,-,2.7,2.3,3.1,790000
+2018,estratificado,-,60+,-,-,-,-,-,7.1,6.4,8.0,1162000
+2018,estratificado,-,-,rural,-,-,-,-,2.7,2.3,3.1,468000
+2018,estratificado,-,-,urbano,-,-,-,-,3.1,2.8,3.4,2001000
+2018,estratificado,-,-,-,norte ,-,-,-,3.7,3.3,4.2,633000
+2018,estratificado,-,-,-,centro,-,-,-,2.4,2.1,2.8,693000
+2018,estratificado,-,-,-,cdmx,-,-,-,2.8,2.0,3.8,317000
+2018,estratificado,-,-,-,sur,-,-,-,3.3,2.9,3.7,827000
+2018,estratificado,-,-,-,-,primaria o menos,-,-,4.9,4.4,5.4,1262000
+2018,estratificado,-,-,-,-,secundaria,-,-,2.3,1.9,2.7,513000
+2018,estratificado,-,-,-,-,media,-,-,2.1,1.7,2.6,383000
+2018,estratificado,-,-,-,-,superior,-,-,1.9,1.5,2.5,313000
+2018,estratificado,-,-,-,-,-,bajo,-,3.0,2.7,3.4,728000
+2018,estratificado,-,-,-,-,-,medio,-,3.0,2.7,3.5,807000
+2018,estratificado,-,-,-,-,-,alto,-,2.9,2.5,3.4,935000
+2018,estratificado,-,-,-,-,-,-,no,2.4,2.2,2.6,1811000
+2018,estratificado,-,-,-,-,-,-,si,9.8,8.4,11.5,659000
+2018,estratificado,hombre,20-39,-,-,-,-,-,1.7,1.4,2.2,294000
+2018,estratificado,hombre,40-59,-,-,-,-,-,2.6,2.0,3.3,348000
+2018,estratificado,hombre,60+,-,-,-,-,-,6.6,5.5,7.9,465000
+2018,estratificado,mujer,20-39,-,-,-,-,-,1.1,.9,1.4,225000
+2018,estratificado,mujer,40-59,-,-,-,-,-,2.7,2.3,3.2,442000
+2018,estratificado,mujer,60+,-,-,-,-,-,7.6,6.5,8.8,697000
+2018,estratificado,hombre,-,rural,-,-,-,-,2.2,1.8,2.7,180000
+2018,estratificado,hombre,-,urbano,-,-,-,-,3.1,2.7,3.6,926000
+2018,estratificado,mujer,-,rural,-,-,-,-,3.1,2.5,3.7,289000
+2018,estratificado,mujer,-,urbano,-,-,-,-,3.0,2.7,3.4,1076000
+2018,estratificado,hombre,-,-,norte ,-,-,-,3.2,2.7,3.9,254000
+2018,estratificado,hombre,-,-,centro,-,-,-,2.3,1.9,2.9,312000
+2018,estratificado,hombre,-,-,cdmx,-,-,-,3.3,2.1,5.2,167000
+2018,estratificado,hombre,-,-,sur,-,-,-,3.3,2.7,4.0,374000
+2018,estratificado,mujer,-,-,norte ,-,-,-,4.1,3.5,4.8,379000
+2018,estratificado,mujer,-,-,centro,-,-,-,2.4,2.0,3.0,382000
+2018,estratificado,mujer,-,-,cdmx,-,-,-,2.4,1.5,3.8,150000
+2018,estratificado,mujer,-,-,sur,-,-,-,3.2,2.8,3.8,454000
+2018,estratificado,hombre,-,-,-,primaria o menos,-,-,3.8,3.1,4.6,424000
+2018,estratificado,hombre,-,-,-,secundaria,-,-,2.7,2.1,3.4,273000
+2018,estratificado,hombre,-,-,-,media,-,-,2.5,1.9,3.4,206000
+2018,estratificado,hombre,-,-,-,superior,-,-,2.5,1.8,3.5,204000
+2018,estratificado,mujer,-,-,-,primaria o menos,-,-,5.7,5.0,6.5,838000
+2018,estratificado,mujer,-,-,-,secundaria,-,-,1.9,1.6,2.4,240000
+2018,estratificado,mujer,-,-,-,media,-,-,1.8,1.3,2.4,177000
+2018,estratificado,mujer,-,-,-,superior,-,-,1.3,.9,1.9,110000
+2018,estratificado,hombre,-,-,-,-,bajo,-,2.5,2.1,3.1,275000
+2018,estratificado,hombre,-,-,-,-,medio,-,2.9,2.4,3.6,348000
+2018,estratificado,hombre,-,-,-,-,alto,-,3.3,2.6,4.1,484000
+2018,estratificado,mujer,-,-,-,-,bajo,-,3.5,3.0,4.0,453000
+2018,estratificado,mujer,-,-,-,-,medio,-,3.1,2.6,3.7,459000
+2018,estratificado,mujer,-,-,-,-,alto,-,2.6,2.1,3.1,452000
+2018,estratificado,hombre,-,-,-,-,-,no,2.4,2.1,2.8,842000
+2018,estratificado,hombre,-,-,-,-,-,si,9.8,7.6,12.6,265000
+2018,estratificado,mujer,-,-,-,-,-,no,2.4,2.1,2.6,969000
+2018,estratificado,mujer,-,-,-,-,-,si,9.8,8.0,11.9,395000
+2020,nacional,-,-,-,-,-,-,-,,,,
+2020,estratificado,hombre,-,-,-,-,-,-,,,,
+2020,estratificado,mujer,-,-,-,-,-,-,,,,
+2020,estratificado,-,20-39,-,-,-,-,-,,,,
+2020,estratificado,-,40-59,-,-,-,-,-,,,,
+2020,estratificado,-,60+,-,-,-,-,-,,,,
+2020,estratificado,-,-,rural,-,-,-,-,,,,
+2020,estratificado,-,-,urbano,-,-,-,-,,,,
+2020,estratificado,-,-,-,norte ,-,-,-,,,,
+2020,estratificado,-,-,-,centro,-,-,-,,,,
+2020,estratificado,-,-,-,cdmx,-,-,-,,,,
+2020,estratificado,-,-,-,sur,-,-,-,,,,
+2020,estratificado,-,-,-,-,primaria o menos,-,-,,,,
+2020,estratificado,-,-,-,-,secundaria,-,-,,,,
+2020,estratificado,-,-,-,-,media,-,-,,,,
+2020,estratificado,-,-,-,-,superior,-,-,,,,
+2020,estratificado,-,-,-,-,-,bajo,-,,,,
+2020,estratificado,-,-,-,-,-,medio,-,,,,
+2020,estratificado,-,-,-,-,-,alto,-,,,,
+2020,estratificado,-,-,-,-,-,-,no,,,,
+2020,estratificado,-,-,-,-,-,-,si,,,,
+2020,estratificado,hombre,20-39,-,-,-,-,-,,,,
+2020,estratificado,hombre,40-59,-,-,-,-,-,,,,
+2020,estratificado,hombre,60+,-,-,-,-,-,,,,
+2020,estratificado,mujer,20-39,-,-,-,-,-,,,,
+2020,estratificado,mujer,40-59,-,-,-,-,-,,,,
+2020,estratificado,mujer,60+,-,-,-,-,-,,,,
+2020,estratificado,hombre,-,rural,-,-,-,-,,,,
+2020,estratificado,hombre,-,urbano,-,-,-,-,,,,
+2020,estratificado,mujer,-,rural,-,-,-,-,,,,
+2020,estratificado,mujer,-,urbano,-,-,-,-,,,,
+2020,estratificado,hombre,-,-,norte ,-,-,-,,,,
+2020,estratificado,hombre,-,-,centro,-,-,-,,,,
+2020,estratificado,hombre,-,-,cdmx,-,-,-,,,,
+2020,estratificado,hombre,-,-,sur,-,-,-,,,,
+2020,estratificado,mujer,-,-,norte ,-,-,-,,,,
+2020,estratificado,mujer,-,-,centro,-,-,-,,,,
+2020,estratificado,mujer,-,-,cdmx,-,-,-,,,,
+2020,estratificado,mujer,-,-,sur,-,-,-,,,,
+2020,estratificado,hombre,-,-,-,primaria o menos,-,-,,,,
+2020,estratificado,hombre,-,-,-,secundaria,-,-,,,,
+2020,estratificado,hombre,-,-,-,media,-,-,,,,
+2020,estratificado,hombre,-,-,-,superior,-,-,,,,
+2020,estratificado,mujer,-,-,-,primaria o menos,-,-,,,,
+2020,estratificado,mujer,-,-,-,secundaria,-,-,,,,
+2020,estratificado,mujer,-,-,-,media,-,-,,,,
+2020,estratificado,mujer,-,-,-,superior,-,-,,,,
+2020,estratificado,hombre,-,-,-,-,bajo,-,,,,
+2020,estratificado,hombre,-,-,-,-,medio,-,,,,
+2020,estratificado,hombre,-,-,-,-,alto,-,,,,
+2020,estratificado,mujer,-,-,-,-,bajo,-,,,,
+2020,estratificado,mujer,-,-,-,-,medio,-,,,,
+2020,estratificado,mujer,-,-,-,-,alto,-,,,,
+2020,estratificado,hombre,-,-,-,-,-,no,,,,
+2020,estratificado,hombre,-,-,-,-,-,si,,,,
+2020,estratificado,mujer,-,-,-,-,-,no,,,,
+2020,estratificado,mujer,-,-,-,-,-,si,,,,
+2021,nacional,-,-,-,-,-,-,-,1.9,1.6,2.2,1579000
+2021,estratificado,hombre,-,-,-,-,-,-,1.8,1.4,2.3,736000
+2021,estratificado,mujer,-,-,-,-,-,-,1.9,1.5,2.4,843000
+2021,estratificado,-,20-39,-,-,-,-,-,.9,.6,1.3,347000
+2021,estratificado,-,40-59,-,-,-,-,-,2.3,1.7,2.9,664000
+2021,estratificado,-,60+,-,-,-,-,-,3.5,2.8,4.5,569000
+2021,estratificado,-,-,rural,-,-,-,-,1.9,1.3,2.6,316000
+2021,estratificado,-,-,urbano,-,-,-,-,1.9,1.5,2.2,1263000
+2021,estratificado,-,-,-,norte ,-,-,-,2.0,1.3,3.0,339000
+2021,estratificado,-,-,-,centro,-,-,-,1.6,1.3,2.1,542000
+2021,estratificado,-,-,-,cdmx,-,-,-,2.7,2.0,3.6,228000
+2021,estratificado,-,-,-,sur,-,-,-,1.8,1.3,2.5,473000
+2021,estratificado,-,-,-,-,primaria o menos,-,-,,,,
+2021,estratificado,-,-,-,-,secundaria,-,-,,,,
+2021,estratificado,-,-,-,-,media,-,-,,,,
+2021,estratificado,-,-,-,-,superior,-,-,,,,
+2021,estratificado,-,-,-,-,-,bajo,-,2.0,1.6,2.6,518000
+2021,estratificado,-,-,-,-,-,medio,-,1.9,1.5,2.4,500000
+2021,estratificado,-,-,-,-,-,alto,-,1.7,1.2,2.4,562000
+2021,estratificado,-,-,-,-,-,-,no,1.5,1.2,1.8,1166000
+2021,estratificado,-,-,-,-,-,-,si,6.1,4.4,8.4,414000
+2021,estratificado,hombre,20-39,-,-,-,-,-,,,,
+2021,estratificado,hombre,40-59,-,-,-,-,-,,,,
+2021,estratificado,hombre,60+,-,-,-,-,-,,,,
+2021,estratificado,mujer,20-39,-,-,-,-,-,,,,
+2021,estratificado,mujer,40-59,-,-,-,-,-,,,,
+2021,estratificado,mujer,60+,-,-,-,-,-,,,,
+2021,estratificado,hombre,-,rural,-,-,-,-,1.5,.9,2.3,122000
+2021,estratificado,hombre,-,urbano,-,-,-,-,1.9,1.4,2.6,615000
+2021,estratificado,mujer,-,rural,-,-,-,-,2.3,1.4,3.6,195000
+2021,estratificado,mujer,-,urbano,-,-,-,-,1.8,1.4,2.3,649000
+2021,estratificado,hombre,-,-,norte ,-,-,-,,,,
+2021,estratificado,hombre,-,-,centro,-,-,-,,,,
+2021,estratificado,hombre,-,-,cdmx,-,-,-,,,,
+2021,estratificado,hombre,-,-,sur,-,-,-,,,,
+2021,estratificado,mujer,-,-,norte ,-,-,-,,,,
+2021,estratificado,mujer,-,-,centro,-,-,-,,,,
+2021,estratificado,mujer,-,-,cdmx,-,-,-,,,,
+2021,estratificado,mujer,-,-,sur,-,-,-,,,,
+2021,estratificado,hombre,-,-,-,primaria o menos,-,-,,,,
+2021,estratificado,hombre,-,-,-,secundaria,-,-,,,,
+2021,estratificado,hombre,-,-,-,media,-,-,,,,
+2021,estratificado,hombre,-,-,-,superior,-,-,,,,
+2021,estratificado,mujer,-,-,-,primaria o menos,-,-,,,,
+2021,estratificado,mujer,-,-,-,secundaria,-,-,,,,
+2021,estratificado,mujer,-,-,-,media,-,-,,,,
+2021,estratificado,mujer,-,-,-,superior,-,-,,,,
+2021,estratificado,hombre,-,-,-,-,bajo,-,1.7,1.2,2.5,216000
+2021,estratificado,hombre,-,-,-,-,medio,-,1.8,1.2,2.6,224000
+2021,estratificado,hombre,-,-,-,-,alto,-,1.9,1.1,3.2,298000
+2021,estratificado,mujer,-,-,-,-,bajo,-,2.3,1.7,3.1,303000
+2021,estratificado,mujer,-,-,-,-,medio,-,1.9,1.4,2.6,277000
+2021,estratificado,mujer,-,-,-,-,alto,-,1.6,1.0,2.3,265000
+2021,estratificado,hombre,-,-,-,-,-,no,,,,
+2021,estratificado,hombre,-,-,-,-,-,si,,,,
+2021,estratificado,mujer,-,-,-,-,-,no,,,,
+2021,estratificado,mujer,-,-,-,-,-,si,,,,
+2022,nacional,-,-,-,-,-,-,-,4.9,4.2,5.6,4153000
+2022,estratificado,hombre,-,-,-,-,-,-,4.6,3.7,5.7,1890000
+2022,estratificado,mujer,-,-,-,-,-,-,5.1,4.2,6.1,2264000
+2022,estratificado,-,20-39,-,-,-,-,-,2.7,2.1,3.4,1042000
+2022,estratificado,-,40-59,-,-,-,-,-,4.1,3.1,5.4,1238000
+2022,estratificado,-,60+,-,-,-,-,-,11.0,9.0,13.2,1874000
+2022,estratificado,-,-,rural,-,-,-,-,4.1,3.2,5.3,710000
+2022,estratificado,-,-,urbano,-,-,-,-,5.0,4.2,6.0,3444000
+2022,estratificado,-,-,-,norte ,-,-,-,4.5,3.7,5.5,797000
+2022,estratificado,-,-,-,centro,-,-,-,4.5,3.6,5.6,1462000
+2022,estratificado,-,-,-,cdmx,-,-,-,4.3,3.1,5.9,403000
+2022,estratificado,-,-,-,sur,-,-,-,5.7,4.1,8.0,1493000
+2022,estratificado,-,-,-,-,primaria o menos,-,-,6.9,5.9,8.1,1638000
+2022,estratificado,-,-,-,-,secundaria,-,-,4.5,3.5,5.7,1028000
+2022,estratificado,-,-,-,-,media,-,-,3.2,2.0,5.0,650000
+2022,estratificado,-,-,-,-,superior,-,-,4.5,3.2,6.4,839000
+2022,estratificado,-,-,-,-,-,bajo,-,4.8,4.0,5.8,1225000
+2022,estratificado,-,-,-,-,-,medio,-,4.4,3.5,5.4,1216000
+2022,estratificado,-,-,-,-,-,alto,-,5.4,4.0,7.1,1713000
+2022,estratificado,-,-,-,-,-,-,no,4.2,3.5,5.0,3254000
+2022,estratificado,-,-,-,-,-,-,si,10.7,8.8,12.9,899000
+2022,estratificado,hombre,20-39,-,-,-,-,-,2.7,1.8,3.9,499000
+2022,estratificado,hombre,40-59,-,-,-,-,-,3.5,2.5,5.0,513000
+2022,estratificado,hombre,60+,-,-,-,-,-,11.5,8.7,15.1,879000
+2022,estratificado,mujer,20-39,-,-,-,-,-,2.7,2.0,3.8,543000
+2022,estratificado,mujer,40-59,-,-,-,-,-,4.7,3.2,7.0,726000
+2022,estratificado,mujer,60+,-,-,-,-,-,10.5,8.6,12.8,996000
+2022,estratificado,hombre,-,rural,-,-,-,-,3.5,2.2,5.7,292000
+2022,estratificado,hombre,-,urbano,-,-,-,-,4.9,3.8,6.2,1598000
+2022,estratificado,mujer,-,rural,-,-,-,-,4.7,3.5,6.2,418000
+2022,estratificado,mujer,-,urbano,-,-,-,-,5.2,4.1,6.5,1846000
+2022,estratificado,hombre,-,-,norte ,-,-,-,,,,
+2022,estratificado,hombre,-,-,centro,-,-,-,,,,
+2022,estratificado,hombre,-,-,cdmx,-,-,-,,,,
+2022,estratificado,hombre,-,-,sur,-,-,-,,,,
+2022,estratificado,mujer,-,-,norte ,-,-,-,,,,
+2022,estratificado,mujer,-,-,centro,-,-,-,,,,
+2022,estratificado,mujer,-,-,cdmx,-,-,-,,,,
+2022,estratificado,mujer,-,-,sur,-,-,-,,,,
+2022,estratificado,hombre,-,-,-,primaria o menos,-,-,,,,
+2022,estratificado,hombre,-,-,-,secundaria,-,-,,,,
+2022,estratificado,hombre,-,-,-,media,-,-,,,,
+2022,estratificado,hombre,-,-,-,superior,-,-,,,,
+2022,estratificado,mujer,-,-,-,primaria o menos,-,-,,,,
+2022,estratificado,mujer,-,-,-,secundaria,-,-,,,,
+2022,estratificado,mujer,-,-,-,media,-,-,,,,
+2022,estratificado,mujer,-,-,-,superior,-,-,,,,
+2022,estratificado,hombre,-,-,-,-,bajo,-,4.8,3.4,6.6,572000
+2022,estratificado,hombre,-,-,-,-,medio,-,3.1,2.2,4.4,417000
+2022,estratificado,hombre,-,-,-,-,alto,-,5.9,4.0,8.4,901000
+2022,estratificado,mujer,-,-,-,-,bajo,-,4.8,3.8,6.1,653000
+2022,estratificado,mujer,-,-,-,-,medio,-,5.5,4.3,7.1,799000
+2022,estratificado,mujer,-,-,-,-,alto,-,4.9,3.3,7.2,812000
+2022,estratificado,hombre,-,-,-,-,-,no,4.0,3.1,5.2,1505000
+2022,estratificado,hombre,-,-,-,-,-,si,11.6,8.4,15.9,385000
+2022,estratificado,mujer,-,-,-,-,-,no,4.4,3.5,5.6,1750000
+2022,estratificado,mujer,-,-,-,-,-,si,10.0,8.0,12.6,515000
+2023,nacional,-,-,-,-,-,-,-,4.4,3.6,5.4,3806000
+2023,estratificado,hombre,-,-,-,-,-,-,4.9,3.5,6.8,2022000
+2023,estratificado,mujer,-,-,-,-,-,-,4.0,3.2,5.0,1784000
+2023,estratificado,-,20-39,-,-,-,-,-,2.7,1.7,4.3,1061000
+2023,estratificado,-,40-59,-,-,-,-,-,5.0,3.7,6.7,1469000
+2023,estratificado,-,60+,-,-,-,-,-,7.3,5.6,9.5,1278000
+2023,estratificado,-,-,rural,-,-,-,-,4.9,2.9,8.1,826000
+2023,estratificado,-,-,urbano,-,-,-,-,4.3,3.5,5.4,2980000
+2023,estratificado,-,-,-,norte ,-,-,-,,,,
+2023,estratificado,-,-,-,centro,-,-,-,,,,
+2023,estratificado,-,-,-,cdmx,-,-,-,,,,
+2023,estratificado,-,-,-,sur,-,-,-,,,,
+2023,estratificado,-,-,-,-,primaria o menos,-,-,6.4,4.4,9.2,1275000
+2023,estratificado,-,-,-,-,secundaria,-,-,5.5,3.9,7.8,1416000
+2023,estratificado,-,-,-,-,media,-,-,2.9,2.0,4.4,641000
+2023,estratificado,-,-,-,-,superior,-,-,2.6,1.6,4.1,475000
+2023,estratificado,-,-,-,-,-,bajo,-,4.3,3.1,5.9,1174000
+2023,estratificado,-,-,-,-,-,medio,-,5.2,3.7,7.2,1332000
+2023,estratificado,-,-,-,-,-,alto,-,3.9,2.8,5.6,1300000
+2023,estratificado,-,-,-,-,-,-,no,3.3,2.6,4.2,2368000
+2023,estratificado,-,-,-,-,-,-,si,13.1,8.5,19.6,683000
+2023,estratificado,hombre,20-39,-,-,-,-,-,,,,
+2023,estratificado,hombre,40-59,-,-,-,-,-,,,,
+2023,estratificado,hombre,60+,-,-,-,-,-,,,,
+2023,estratificado,mujer,20-39,-,-,-,-,-,,,,
+2023,estratificado,mujer,40-59,-,-,-,-,-,,,,
+2023,estratificado,mujer,60+,-,-,-,-,-,,,,
+2023,estratificado,hombre,-,rural,-,-,-,-,,,,
+2023,estratificado,hombre,-,urbano,-,-,-,-,,,,
+2023,estratificado,mujer,-,rural,-,-,-,-,,,,
+2023,estratificado,mujer,-,urbano,-,-,-,-,,,,
+2023,estratificado,hombre,-,-,norte ,-,-,-,,,,
+2023,estratificado,hombre,-,-,centro,-,-,-,,,,
+2023,estratificado,hombre,-,-,cdmx,-,-,-,,,,
+2023,estratificado,hombre,-,-,sur,-,-,-,,,,
+2023,estratificado,mujer,-,-,norte ,-,-,-,,,,
+2023,estratificado,mujer,-,-,centro,-,-,-,,,,
+2023,estratificado,mujer,-,-,cdmx,-,-,-,,,,
+2023,estratificado,mujer,-,-,sur,-,-,-,,,,
+2023,estratificado,hombre,-,-,-,primaria o menos,-,-,,,,
+2023,estratificado,hombre,-,-,-,secundaria,-,-,,,,
+2023,estratificado,hombre,-,-,-,media,-,-,,,,
+2023,estratificado,hombre,-,-,-,superior,-,-,,,,
+2023,estratificado,mujer,-,-,-,primaria o menos,-,-,,,,
+2023,estratificado,mujer,-,-,-,secundaria,-,-,,,,
+2023,estratificado,mujer,-,-,-,media,-,-,,,,
+2023,estratificado,mujer,-,-,-,superior,-,-,,,,
+2023,estratificado,hombre,-,-,-,-,bajo,-,,,,
+2023,estratificado,hombre,-,-,-,-,medio,-,,,,
+2023,estratificado,hombre,-,-,-,-,alto,-,,,,
+2023,estratificado,mujer,-,-,-,-,bajo,-,,,,
+2023,estratificado,mujer,-,-,-,-,medio,-,,,,
+2023,estratificado,mujer,-,-,-,-,alto,-,,,,
+2023,estratificado,hombre,-,-,-,-,-,no,,,,
+2023,estratificado,hombre,-,-,-,-,-,si,,,,
+2023,estratificado,mujer,-,-,-,-,-,no,,,,
+2023,estratificado,mujer,-,-,-,-,-,si,,,,

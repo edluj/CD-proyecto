@@ -1,0 +1,93 @@
+{
+  "variable_dependiente": "salud_general_latente",
+  "variables_compuestas": {
+    "indice_sueno_salud_mental": "Promedio estandarizado de horas de sueno, calidad de sueno, estres y depresion.",
+    "indice_actividad_corporal": "Promedio estandarizado de actividad efectiva, minutos de actividad, pantalla y exceso de IMC.",
+    "indice_habitos_saludables": "Promedio estandarizado inverso de azucar, alcohol y tabaquismo.",
+    "indice_contexto_socioambiental": "Promedio estandarizado de nivel socioeconomico y contexto ambiental.",
+    "indice_carga_clinica": "Promedio estandarizado inverso de diabetes e hipertension."
+  },
+  "metodo_construccion_indices": "Cada indice se construyo estandarizando primero las variables de su categoria y luego promediandolas con el signo segun su aporte esperado a la salud. Esto evita reutilizar directamente los pesos de la variable objetivo.",
+  "train_test_split": {
+    "train_size": 60000,
+    "test_size": 15000,
+    "test_proportion": 0.2
+  },
+  "metrics_test": {
+    "r2": 0.9587,
+    "mae": 4.2456,
+    "mse": 28.1821,
+    "rmse": 5.3087
+  },
+  "intercept": 43.1438,
+  "coefficients": {
+    "indice_sueno_salud_mental": 10.713936,
+    "indice_actividad_corporal": 11.244701,
+    "indice_habitos_saludables": 7.693441,
+    "indice_contexto_socioambiental": 6.950979,
+    "indice_carga_clinica": 11.880505
+  },
+  "assumptions": {
+    "linealidad": {
+      "prueba": "Ramsey RESET",
+      "p_valor": 0.0,
+      "cumple": false
+    },
+    "independencia": {
+      "prueba": "Durbin-Watson",
+      "estadistico": 2.0075,
+      "cumple": true
+    },
+    "homocedasticidad": {
+      "prueba": "Breusch-Pagan",
+      "p_valor_f": 0.0,
+      "cumple": false
+    },
+    "normalidad": {
+      "prueba": "Jarque-Bera",
+      "p_valor": 0.0,
+      "asimetria": -0.0644,
+      "curtosis": 3.0347,
+      "cumple": false
+    },
+    "cumplen_los_4_supuestos": false
+  },
+  "anova_top": [
+    {
+      "factor": "indice_carga_clinica",
+      "suma_cuadrados": 6827857.4159,
+      "gl": 1.0,
+      "estadistico_f": 247272.5042,
+      "p_valor": 0.0
+    },
+    {
+      "factor": "indice_sueno_salud_mental",
+      "suma_cuadrados": 3279280.7664,
+      "gl": 1.0,
+      "estadistico_f": 118759.9444,
+      "p_valor": 0.0
+    },
+    {
+      "factor": "indice_actividad_corporal",
+      "suma_cuadrados": 3169934.5697,
+      "gl": 1.0,
+      "estadistico_f": 114799.9455,
+      "p_valor": 0.0
+    },
+    {
+      "factor": "indice_habitos_saludables",
+      "suma_cuadrados": 1399066.3389,
+      "gl": 1.0,
+      "estadistico_f": 50667.5251,
+      "p_valor": 0.0
+    },
+    {
+      "factor": "indice_contexto_socioambiental",
+      "suma_cuadrados": 700762.5935,
+      "gl": 1.0,
+      "estadistico_f": 25378.2864,
+      "p_valor": 0.0
+    }
+  ],
+  "formula": "salud_general_latente ~ indice_sueno_salud_mental + indice_actividad_corporal + indice_habitos_saludables + indice_contexto_socioambiental + indice_carga_clinica"
+}

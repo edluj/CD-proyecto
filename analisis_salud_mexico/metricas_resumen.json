@@ -1,0 +1,1015 @@
+{
+  "correlaciones": {
+    "sueno_horas_vs_estres": -0.6766,
+    "sueno_calidad_vs_estres": -0.8377,
+    "actividad_vs_imc": -0.5659
+  },
+  "estres_promedio": {
+    "menos_de_6_horas_sueno": 9.95,
+    "entre_7_y_8_horas_sueno": 7.43
+  },
+  "imc_promedio_por_actividad": {
+    "sedentaria": 33.51,
+    "baja": 28.38,
+    "media": 24.57,
+    "alta": 21.71
+  },
+  "salud_promedio_por_habitos": {
+    "tabaco": {
+      "0": 48.01,
+      "1": 29.04
+    },
+    "azucar": {
+      "0-1": 55.59,
+      "1-2": 47.63,
+      "2-3": 40.54,
+      "3+": 33.17
+    },
+    "pantalla": {
+      "0-3": 65.4,
+      "3-5": 52.9,
+      "5-7": 42.24,
+      "7+": 30.76
+    },
+    "alcohol": {
+      "0": 46.56,
+      "0-4": 44.72,
+      "4-10": 41.22,
+      "10+": 35.28
+    }
+  },
+  "alimentacion": {
+    "salud_promedio": {
+      "alta_azucar": 40.54,
+      "moderada": 47.63,
+      "muy_alta_azucar": 33.17,
+      "saludable": 55.59
+    },
+    "obesidad_pct": {
+      "alta_azucar": 47.86,
+      "moderada": 35.19,
+      "muy_alta_azucar": 61.05,
+      "saludable": 22.3
+    },
+    "diabetes_pct": {
+      "alta_azucar": 13.45,
+      "moderada": 11.27,
+      "muy_alta_azucar": 15.23,
+      "saludable": 8.3
+    }
+  },
+  "contexto_social": {
+    "salud_promedio_socioeconomico": {
+      "bajo": 38.35,
+      "medio": 44.81,
+      "alto": 52.35
+    },
+    "salud_promedio_localidad": {
+      "rural": 60.72,
+      "urbano": 40.43
+    },
+    "fuente_directa_2023": {
+      "obesidad_localidad_2023": {
+        "rural": 40.9,
+        "urbano": 40.6
+      },
+      "depresion_localidad_2023": {
+        "rural": 18.1,
+        "urbano": 14.1
+      },
+      "obesidad_socioeconomico_2023": {
+        "bajo": 37.6,
+        "medio": 47.4,
+        "alto": 38.2
+      },
+      "depresion_socioeconomico_2023": {
+        "bajo": 18.4,
+        "medio": 15.5,
+        "alto": 11.5
+      }
+    }
+  },
+  "entorno": {
+    "correlacion_entorno_vs_salud": -0.4714,
+    "salud_promedio_por_riesgo_entorno": {
+      "bajo": 59.62,
+      "medio": 46.69,
+      "alto": 40.62,
+      "muy_alto": 31.76
+    }
+  },
+  "regresion_lineal_multiple": {
+    "variable_dependiente": "salud_general_latente",
+    "justificacion_variable_dependiente": "Se eligio salud_general_latente porque es la version no censurada del puntaje de salud y permite cumplir mejor los supuestos del modelo lineal que la version truncada entre 5 y 100.",
+    "formula_modelo": "salud_general_latente ~ calidad_sueno + estres + actividad_efectiva + exceso_imc + porciones_azucar_dia + unidades_alcohol_semana + fuma + horas_pantalla + depresion + hipertension + diabetes + contaminacion_aire + contaminacion_agua + contaminacion_suelo + contaminacion_auditiva + trafico + inseguridad + C(nivel_socioeconomico)",
+    "variables_candidatas_numericas": [
+      "edad",
+      "horas_sueno",
+      "calidad_sueno",
+      "estres",
+      "min_actividad_semana",
+      "actividad_efectiva",
+      "imc",
+      "exceso_imc",
+      "porciones_azucar_dia",
+      "unidades_alcohol_semana",
+      "fuma",
+      "horas_pantalla",
+      "depresion",
+      "hipertension",
+      "diabetes",
+      "contaminacion_aire",
+      "contaminacion_agua",
+      "contaminacion_suelo",
+      "contaminacion_auditiva",
+      "trafico",
+      "inseguridad",
+      "indice_entorno_riesgo"
+    ],
+    "variables_candidatas_categoricas": [
+      "sexo",
+      "grupo_de_edad",
+      "tipo_localidad",
+      "nivel_socioeconomico",
+      "nivel_educativo"
+    ],
+    "variables_incluidas_modelo_final": [
+      "calidad_sueno",
+      "estres",
+      "actividad_efectiva",
+      "exceso_imc",
+      "porciones_azucar_dia",
+      "unidades_alcohol_semana",
+      "fuma",
+      "horas_pantalla",
+      "depresion",
+      "hipertension",
+      "diabetes",
+      "contaminacion_aire",
+      "contaminacion_agua",
+      "contaminacion_suelo",
+      "contaminacion_auditiva",
+      "trafico",
+      "inseguridad",
+      "nivel_socioeconomico"
+    ],
+    "criterio_seleccion_variables": "LassoCV se uso para retener variables con coeficiente distinto de cero y RidgeCV para priorizar variables estables cuando habia colinealidad; despues se consolidaron variables redundantes en una especificacion final interpretable.",
+    "variables_excluidas_y_razon": {
+      "sexo": "Lasso y Ridge mostraron un aporte incremental menor frente a habitos y condiciones clinicas.",
+      "edad, grupo_de_edad y horas_sueno": "Se excluyeron del modelo final porque no mejoraron la especificacion una vez incluidas las variables de efecto directo.",
+      "tipo_localidad e indice_entorno_riesgo": "Se sustituyeron por los componentes ambientales directos para cumplir mejor los supuestos del modelo.",
+      "nivel_educativo": "Su contribucion marginal fue pequena frente a nivel socioeconomico y habitos.",
+      "imc y min_actividad_semana": "Se reemplazaron por exceso_imc y actividad_efectiva para reflejar la forma funcional que mejor satisface los supuestos.",
+      "nivel_actividad, categoria_imc, categoria_alimentacion, categoria_salud": "Se excluyeron por ser variables derivadas de mediciones continuas ya incluidas o del propio objetivo."
+    },
+    "variables_seleccionadas_por_lasso": [
+      "actividad_efectiva",
+      "calidad_sueno",
+      "contaminacion_agua",
+      "contaminacion_aire",
+      "contaminacion_suelo",
+      "depresion",
+      "diabetes",
+      "estres",
+      "exceso_imc",
+      "fuma",
+      "hipertension",
+      "horas_pantalla",
+      "imc",
+      "indice_entorno_riesgo",
+      "inseguridad",
+      "min_actividad_semana",
+      "nivel_socioeconomico",
+      "porciones_azucar_dia",
+      "trafico",
+      "unidades_alcohol_semana"
+    ],
+    "variables_priorizadas_por_ridge": [
+      "exceso_imc",
+      "diabetes",
+      "hipertension",
+      "depresion",
+      "fuma",
+      "nivel_socioeconomico",
+      "estres",
+      "horas_pantalla",
+      "calidad_sueno",
+      "porciones_azucar_dia",
+      "actividad_efectiva",
+      "unidades_alcohol_semana"
+    ],
+    "sustento_variables_finales": [
+      {
+        "variable": "calidad_sueno",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su aporte incremental y estabilidad en los modelos regularizados."
+      },
+      {
+        "variable": "estres",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su aporte incremental y estabilidad en los modelos regularizados."
+      },
+      {
+        "variable": "actividad_efectiva",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se uso la actividad acotada a 300 minutos para reflejar rendimientos decrecientes."
+      },
+      {
+        "variable": "exceso_imc",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se uso en lugar de IMC bruto porque captura mejor el deterioro de salud por encima del umbral saludable."
+      },
+      {
+        "variable": "porciones_azucar_dia",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su aporte incremental y estabilidad en los modelos regularizados."
+      },
+      {
+        "variable": "unidades_alcohol_semana",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su aporte incremental y estabilidad en los modelos regularizados."
+      },
+      {
+        "variable": "fuma",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su aporte incremental y estabilidad en los modelos regularizados."
+      },
+      {
+        "variable": "horas_pantalla",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su aporte incremental y estabilidad en los modelos regularizados."
+      },
+      {
+        "variable": "depresion",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su aporte incremental y estabilidad en los modelos regularizados."
+      },
+      {
+        "variable": "hipertension",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su aporte incremental y estabilidad en los modelos regularizados."
+      },
+      {
+        "variable": "diabetes",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su aporte incremental y estabilidad en los modelos regularizados."
+      },
+      {
+        "variable": "contaminacion_aire",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo como componente directo del entorno porque asi el modelo cumple mejor los supuestos."
+      },
+      {
+        "variable": "contaminacion_agua",
+        "respaldo_regularizacion": "lasso",
+        "detalle": "Se mantuvo como componente directo del entorno porque asi el modelo cumple mejor los supuestos."
+      },
+      {
+        "variable": "contaminacion_suelo",
+        "respaldo_regularizacion": "lasso",
+        "detalle": "Se mantuvo como componente directo del entorno porque asi el modelo cumple mejor los supuestos."
+      },
+      {
+        "variable": "contaminacion_auditiva",
+        "respaldo_regularizacion": "criterio_sustantivo",
+        "detalle": "Se mantuvo como componente directo del entorno porque asi el modelo cumple mejor los supuestos."
+      },
+      {
+        "variable": "trafico",
+        "respaldo_regularizacion": "lasso",
+        "detalle": "Se mantuvo como componente directo del entorno porque asi el modelo cumple mejor los supuestos."
+      },
+      {
+        "variable": "inseguridad",
+        "respaldo_regularizacion": "lasso",
+        "detalle": "Se mantuvo como componente directo del entorno porque asi el modelo cumple mejor los supuestos."
+      },
+      {
+        "variable": "nivel_socioeconomico",
+        "respaldo_regularizacion": "lasso+ridge",
+        "detalle": "Se mantuvo por su efecto estructural y por su persistencia en la regularizacion."
+      }
+    ],
+    "ranking_exploratorio_correlacion": [
+      {
+        "variable": "exceso_imc",
+        "correlacion_con_salud_general": -0.8758,
+        "correlacion_absoluta": 0.8758
+      },
+      {
+        "variable": "imc",
+        "correlacion_con_salud_general": -0.8734,
+        "correlacion_absoluta": 0.8734
+      },
+      {
+        "variable": "calidad_sueno",
+        "correlacion_con_salud_general": 0.7136,
+        "correlacion_absoluta": 0.7136
+      },
+      {
+        "variable": "hipertension",
+        "correlacion_con_salud_general": -0.7109,
+        "correlacion_absoluta": 0.7109
+      },
+      {
+        "variable": "estres",
+        "correlacion_con_salud_general": -0.6675,
+        "correlacion_absoluta": 0.6675
+      },
+      {
+        "variable": "diabetes",
+        "correlacion_con_salud_general": -0.6548,
+        "correlacion_absoluta": 0.6548
+      },
+      {
+        "variable": "horas_sueno",
+        "correlacion_con_salud_general": 0.5792,
+        "correlacion_absoluta": 0.5792
+      },
+      {
+        "variable": "actividad_efectiva",
+        "correlacion_con_salud_general": 0.5781,
+        "correlacion_absoluta": 0.5781
+      },
+      {
+        "variable": "min_actividad_semana",
+        "correlacion_con_salud_general": 0.578,
+        "correlacion_absoluta": 0.578
+      },
+      {
+        "variable": "depresion",
+        "correlacion_con_salud_general": -0.5699,
+        "correlacion_absoluta": 0.5699
+      },
+      {
+        "variable": "indice_entorno_riesgo",
+        "correlacion_con_salud_general": -0.4583,
+        "correlacion_absoluta": 0.4583
+      },
+      {
+        "variable": "horas_pantalla",
+        "correlacion_con_salud_general": -0.4197,
+        "correlacion_absoluta": 0.4197
+      },
+      {
+        "variable": "inseguridad",
+        "correlacion_con_salud_general": -0.3777,
+        "correlacion_absoluta": 0.3777
+      },
+      {
+        "variable": "contaminacion_aire",
+        "correlacion_con_salud_general": -0.3551,
+        "correlacion_absoluta": 0.3551
+      },
+      {
+        "variable": "contaminacion_auditiva",
+        "correlacion_con_salud_general": -0.338,
+        "correlacion_absoluta": 0.338
+      },
+      {
+        "variable": "fuma",
+        "correlacion_con_salud_general": -0.3212,
+        "correlacion_absoluta": 0.3212
+      },
+      {
+        "variable": "porciones_azucar_dia",
+        "correlacion_con_salud_general": -0.2954,
+        "correlacion_absoluta": 0.2954
+      },
+      {
+        "variable": "trafico",
+        "correlacion_con_salud_general": -0.2923,
+        "correlacion_absoluta": 0.2923
+      },
+      {
+        "variable": "unidades_alcohol_semana",
+        "correlacion_con_salud_general": -0.1167,
+        "correlacion_absoluta": 0.1167
+      },
+      {
+        "variable": "edad",
+        "correlacion_con_salud_general": -0.0676,
+        "correlacion_absoluta": 0.0676
+      },
+      {
+        "variable": "contaminacion_agua",
+        "correlacion_con_salud_general": 0.033,
+        "correlacion_absoluta": 0.033
+      },
+      {
+        "variable": "contaminacion_suelo",
+        "correlacion_con_salud_general": 0.0278,
+        "correlacion_absoluta": 0.0278
+      }
+    ],
+    "modelos_regularizados": {
+      "lasso": {
+        "alpha": 0.023015,
+        "r2": 0.987,
+        "mae": 2.3721,
+        "mse": 8.8609,
+        "rmse": 2.9767
+      },
+      "ridge": {
+        "alpha": 3.162278,
+        "r2": 0.987,
+        "mae": 2.3695,
+        "mse": 8.8405,
+        "rmse": 2.9733
+      }
+    },
+    "division_entrenamiento_prueba": {
+      "observaciones_totales": 75000,
+      "tamano_entrenamiento": 60000,
+      "tamano_prueba": 15000,
+      "proporcion_prueba": 0.2
+    },
+    "metricas_holdout": {
+      "r2": 0.987,
+      "mae": 2.3694,
+      "mse": 8.8397,
+      "rmse": 2.9732
+    },
+    "predicciones_prueba_ejemplo": [
+      {
+        "valor_real": 16.0116,
+        "valor_predicho": 15.0876,
+        "residuo": 0.9239
+      },
+      {
+        "valor_real": 60.1917,
+        "valor_predicho": 60.3048,
+        "residuo": -0.1132
+      },
+      {
+        "valor_real": 52.5241,
+        "valor_predicho": 51.5053,
+        "residuo": 1.0188
+      },
+      {
+        "valor_real": 55.4598,
+        "valor_predicho": 60.2864,
+        "residuo": -4.8266
+      },
+      {
+        "valor_real": 51.1704,
+        "valor_predicho": 49.7922,
+        "residuo": 1.3782
+      },
+      {
+        "valor_real": 67.0725,
+        "valor_predicho": 61.6517,
+        "residuo": 5.4208
+      },
+      {
+        "valor_real": 72.7011,
+        "valor_predicho": 71.4623,
+        "residuo": 1.2388
+      },
+      {
+        "valor_real": 37.353,
+        "valor_predicho": 34.2591,
+        "residuo": 3.0939
+      },
+      {
+        "valor_real": 80.6466,
+        "valor_predicho": 80.1944,
+        "residuo": 0.4522
+      },
+      {
+        "valor_real": 48.4927,
+        "valor_predicho": 52.52,
+        "residuo": -4.0273
+      }
+    ],
+    "ranking_lasso": [
+      {
+        "variable": "exceso_imc",
+        "peso_lasso": 8.6895,
+        "coeficiente_neto": -8.6895
+      },
+      {
+        "variable": "diabetes",
+        "peso_lasso": 4.884,
+        "coeficiente_neto": -4.884
+      },
+      {
+        "variable": "hipertension",
+        "peso_lasso": 4.6675,
+        "coeficiente_neto": -4.6675
+      },
+      {
+        "variable": "depresion",
+        "peso_lasso": 3.8693,
+        "coeficiente_neto": -3.8693
+      },
+      {
+        "variable": "fuma",
+        "peso_lasso": 3.0381,
+        "coeficiente_neto": -3.0381
+      },
+      {
+        "variable": "estres",
+        "peso_lasso": 3.0156,
+        "coeficiente_neto": -3.0156
+      },
+      {
+        "variable": "indice_entorno_riesgo",
+        "peso_lasso": 2.8266,
+        "coeficiente_neto": -2.8266
+      },
+      {
+        "variable": "nivel_socioeconomico",
+        "peso_lasso": 2.8244,
+        "coeficiente_neto": -4.0083
+      },
+      {
+        "variable": "horas_pantalla",
+        "peso_lasso": 2.7709,
+        "coeficiente_neto": -2.7709
+      },
+      {
+        "variable": "calidad_sueno",
+        "peso_lasso": 2.6599,
+        "coeficiente_neto": 2.6599
+      },
+      {
+        "variable": "porciones_azucar_dia",
+        "peso_lasso": 2.0146,
+        "coeficiente_neto": -2.0146
+      },
+      {
+        "variable": "min_actividad_semana",
+        "peso_lasso": 2.0068,
+        "coeficiente_neto": 2.0068
+      }
+    ],
+    "ranking_ridge": [
+      {
+        "variable": "exceso_imc",
+        "peso_ridge": 8.7111,
+        "coeficiente_neto": -8.7111
+      },
+      {
+        "variable": "diabetes",
+        "peso_ridge": 4.8992,
+        "coeficiente_neto": -4.8992
+      },
+      {
+        "variable": "hipertension",
+        "peso_ridge": 4.678,
+        "coeficiente_neto": -4.678
+      },
+      {
+        "variable": "depresion",
+        "peso_ridge": 3.8789,
+        "coeficiente_neto": -3.8789
+      },
+      {
+        "variable": "fuma",
+        "peso_ridge": 3.0586,
+        "coeficiente_neto": -3.0586
+      },
+      {
+        "variable": "nivel_socioeconomico",
+        "peso_ridge": 3.0261,
+        "coeficiente_neto": -4.4292
+      },
+      {
+        "variable": "estres",
+        "peso_ridge": 3.0194,
+        "coeficiente_neto": -3.0194
+      },
+      {
+        "variable": "horas_pantalla",
+        "peso_ridge": 2.7939,
+        "coeficiente_neto": -2.7939
+      },
+      {
+        "variable": "calidad_sueno",
+        "peso_ridge": 2.6618,
+        "coeficiente_neto": 2.6618
+      },
+      {
+        "variable": "porciones_azucar_dia",
+        "peso_ridge": 2.0195,
+        "coeficiente_neto": -2.0195
+      },
+      {
+        "variable": "actividad_efectiva",
+        "peso_ridge": 1.4001,
+        "coeficiente_neto": 1.4001
+      },
+      {
+        "variable": "unidades_alcohol_semana",
+        "peso_ridge": 1.1298,
+        "coeficiente_neto": -1.1298
+      }
+    ],
+    "modelo_final_ols": {
+      "r2": 0.9871,
+      "r2_ajustado": 0.9871
+    },
+    "supuestos_regresion": {
+      "linealidad": {
+        "prueba": "Ramsey RESET",
+        "estadistico_f": 0.5638,
+        "p_valor": 0.452732,
+        "cumple": true,
+        "criterio": "p > 0.05 indica que no hay evidencia fuerte de no linealidad."
+      },
+      "independencia": {
+        "prueba": "Durbin-Watson",
+        "estadistico": 1.9964,
+        "cumple": true,
+        "criterio": "Valores cercanos a 2 indican independencia aproximada de los residuos."
+      },
+      "homocedasticidad": {
+        "prueba": "Breusch-Pagan",
+        "estadistico_lm": 13.8899,
+        "p_valor_lm": 0.790072,
+        "estadistico_f": 0.731,
+        "p_valor_f": 0.790121,
+        "cumple": true,
+        "criterio": "p > 0.05 sugiere varianza constante de los residuos."
+      },
+      "normalidad": {
+        "prueba": "Jarque-Bera",
+        "estadistico": 2.1375,
+        "p_valor": 0.343433,
+        "asimetria": 0.0047,
+        "curtosis": 3.0244,
+        "cumple": true,
+        "criterio": "p > 0.05 indica compatibilidad con normalidad de los residuos."
+      },
+      "cumplen_los_4_supuestos": true
+    },
+    "anova_tipo_ii": [
+      {
+        "factor": "C(nivel_socioeconomico)",
+        "suma_cuadrados": 58953.726,
+        "gl": 2.0,
+        "estadistico_f": 3306.9783,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "calidad_sueno",
+        "suma_cuadrados": 122184.6708,
+        "gl": 1.0,
+        "estadistico_f": 13707.7697,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "estres",
+        "suma_cuadrados": 158390.4837,
+        "gl": 1.0,
+        "estadistico_f": 17769.6618,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "actividad_efectiva",
+        "suma_cuadrados": 206288.0223,
+        "gl": 1.0,
+        "estadistico_f": 23143.2363,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "exceso_imc",
+        "suma_cuadrados": 1948673.0786,
+        "gl": 1.0,
+        "estadistico_f": 218619.5837,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "porciones_azucar_dia",
+        "suma_cuadrados": 229638.4256,
+        "gl": 1.0,
+        "estadistico_f": 25762.8935,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "unidades_alcohol_semana",
+        "suma_cuadrados": 91674.9501,
+        "gl": 1.0,
+        "estadistico_f": 10284.9163,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "fuma",
+        "suma_cuadrados": 608023.552,
+        "gl": 1.0,
+        "estadistico_f": 68213.523,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "horas_pantalla",
+        "suma_cuadrados": 361643.5597,
+        "gl": 1.0,
+        "estadistico_f": 40572.4107,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "depresion",
+        "suma_cuadrados": 768947.7697,
+        "gl": 1.0,
+        "estadistico_f": 86267.4418,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "hipertension",
+        "suma_cuadrados": 645782.7276,
+        "gl": 1.0,
+        "estadistico_f": 72449.6852,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "diabetes",
+        "suma_cuadrados": 843033.3658,
+        "gl": 1.0,
+        "estadistico_f": 94579.0269,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "contaminacion_aire",
+        "suma_cuadrados": 62474.116,
+        "gl": 1.0,
+        "estadistico_f": 7008.9054,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "contaminacion_agua",
+        "suma_cuadrados": 21411.1455,
+        "gl": 1.0,
+        "estadistico_f": 2402.0939,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "contaminacion_suelo",
+        "suma_cuadrados": 8307.335,
+        "gl": 1.0,
+        "estadistico_f": 931.9912,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "contaminacion_auditiva",
+        "suma_cuadrados": 29166.408,
+        "gl": 1.0,
+        "estadistico_f": 3272.1486,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "trafico",
+        "suma_cuadrados": 11094.2174,
+        "gl": 1.0,
+        "estadistico_f": 1244.6486,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "inseguridad",
+        "suma_cuadrados": 47794.6272,
+        "gl": 1.0,
+        "estadistico_f": 5362.029,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "Residual",
+        "suma_cuadrados": 668336.7746,
+        "gl": 74980.0,
+        "estadistico_f": null,
+        "p_valor": null
+      }
+    ],
+    "anova_factores_principales": [
+      {
+        "factor": "exceso_imc",
+        "suma_cuadrados": 1948673.0786,
+        "gl": 1.0,
+        "estadistico_f": 218619.5837,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "diabetes",
+        "suma_cuadrados": 843033.3658,
+        "gl": 1.0,
+        "estadistico_f": 94579.0269,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "depresion",
+        "suma_cuadrados": 768947.7697,
+        "gl": 1.0,
+        "estadistico_f": 86267.4418,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "hipertension",
+        "suma_cuadrados": 645782.7276,
+        "gl": 1.0,
+        "estadistico_f": 72449.6852,
+        "p_valor": 0.0
+      },
+      {
+        "factor": "fuma",
+        "suma_cuadrados": 608023.552,
+        "gl": 1.0,
+        "estadistico_f": 68213.523,
+        "p_valor": 0.0
+      }
+    ],
+    "coeficientes_principales": [
+      {
+        "variable": "exceso_imc",
+        "beta_estandarizado": -0.3307,
+        "coeficiente": -1.4985,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "diabetes",
+        "beta_estandarizado": -0.1868,
+        "coeficiente": -15.0703,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "hipertension",
+        "beta_estandarizado": -0.1783,
+        "coeficiente": -11.9257,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "depresion",
+        "beta_estandarizado": -0.1487,
+        "coeficiente": -10.9217,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "fuma",
+        "beta_estandarizado": -0.1163,
+        "coeficiente": -8.018,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "estres",
+        "beta_estandarizado": -0.1142,
+        "coeficiente": -2.1127,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "horas_pantalla",
+        "beta_estandarizado": -0.1066,
+        "coeficiente": -1.6994,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "calidad_sueno",
+        "beta_estandarizado": 0.1007,
+        "coeficiente": 3.0105,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "actividad_efectiva",
+        "beta_estandarizado": 0.081,
+        "coeficiente": 0.0352,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "porciones_azucar_dia",
+        "beta_estandarizado": -0.0768,
+        "coeficiente": -2.2115,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "nivel_socioeconomico_bajo",
+        "beta_estandarizado": -0.055,
+        "coeficiente": -3.044,
+        "p_valor": 0.0
+      },
+      {
+        "variable": "contaminacion_aire",
+        "beta_estandarizado": -0.0472,
+        "coeficiente": -0.8261,
+        "p_valor": 0.0
+      }
+    ],
+    "vif": [
+      {
+        "variable": "estres",
+        "vif": 4.216
+      },
+      {
+        "variable": "calidad_sueno",
+        "vif": 4.149
+      },
+      {
+        "variable": "exceso_imc",
+        "vif": 2.919
+      },
+      {
+        "variable": "nivel_socioeconomico_bajo",
+        "vif": 2.658
+      },
+      {
+        "variable": "hipertension",
+        "vif": 2.557
+      },
+      {
+        "variable": "trafico",
+        "vif": 2.288
+      },
+      {
+        "variable": "diabetes",
+        "vif": 2.137
+      },
+      {
+        "variable": "contaminacion_auditiva",
+        "vif": 2.11
+      },
+      {
+        "variable": "contaminacion_aire",
+        "vif": 1.847
+      },
+      {
+        "variable": "actividad_efectiva",
+        "vif": 1.637
+      },
+      {
+        "variable": "nivel_socioeconomico_medio",
+        "vif": 1.614
+      },
+      {
+        "variable": "horas_pantalla",
+        "vif": 1.606
+      },
+      {
+        "variable": "inseguridad",
+        "vif": 1.595
+      },
+      {
+        "variable": "contaminacion_agua",
+        "vif": 1.566
+      },
+      {
+        "variable": "depresion",
+        "vif": 1.484
+      },
+      {
+        "variable": "contaminacion_suelo",
+        "vif": 1.423
+      },
+      {
+        "variable": "porciones_azucar_dia",
+        "vif": 1.319
+      },
+      {
+        "variable": "fuma",
+        "vif": 1.147
+      },
+      {
+        "variable": "unidades_alcohol_semana",
+        "vif": 1.056
+      }
+    ]
+  },
+  "prevalencias_nacionales_fuente_directa": {
+    "obesidad": {
+      "porcentaje": 40.7,
+      "anio": 2023
+    },
+    "sobrepeso": {
+      "porcentaje": 36.4,
+      "anio": 2023
+    },
+    "depresion": {
+      "porcentaje": 14.9,
+      "anio": 2023
+    },
+    "diabetes": {
+      "porcentaje": 12.2,
+      "anio": 2023
+    },
+    "hipertension": {
+      "porcentaje": 19.6,
+      "anio": 2023
+    }
+  },
+  "picos_por_edad_fuente_directa": [
+    {
+      "condicion": "depresion",
+      "grupo_de_edad": "60+",
+      "porcentaje": 34.0,
+      "anio_fuente": 2023
+    },
+    {
+      "condicion": "hipertension",
+      "grupo_de_edad": "60+",
+      "porcentaje": 41.8,
+      "anio_fuente": 2023
+    },
+    {
+      "condicion": "obesidad",
+      "grupo_de_edad": "40-59",
+      "porcentaje": 49.4,
+      "anio_fuente": 2023
+    }
+  ],
+  "filas_sinteticas": 75000
+}
