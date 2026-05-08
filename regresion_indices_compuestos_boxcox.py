@@ -15,9 +15,7 @@ from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 import statsmodels.api as sm
 from statsmodels.stats.diagnostic import linear_rainbow, het_breuschpagan
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-from statsmodels.stats.stattools import durbin_watson, jarque_bera
-import warnings
-warnings.filterwarnings('ignore')
+from statsmodels.stats.stattools import durbin_watson, jarque_bera, het_breuschpagan
 
 # ==========================================
 # 1. CARGAR DATOS
@@ -118,20 +116,11 @@ print("\n" + "="*60)
 print("INVERSIÓN DE LA TRANSFORMACIÓN")
 print("="*60)
 
-# CORRECCIÓN 2: Función optimizada para evitar errores matemáticos (NaN/Inf)
-def inverse_boxcox(y_transformed, lambda_param, y_shift):
-    """
-    Invierte la transformación Box-Cox usando la librería scipy
-    """
-    y_inverted = inv_boxcox(y_transformed, lambda_param)
-    
-    # Deshacer el shift original
-    y_original = y_inverted + y_shift
-    
-    return y_original
-
-# Invertir predicciones
-y_pred_orig = inverse_boxcox(y_pred_t.values, lambda_param, y_min - 0.1)
+# Función para invertir Box-Cox
+if abs(lambda_param) < 1e-10:
+    y_pred_orig = np.exp(y_pred_t)
+else:
+    y_pred_orig = np.power(y_pred_t * lambda_param + 1, 1/lambda_param)
 
 # Asegurar que no hay NaN ni infinitos
 print(f"Valores predichos - NaN: {np.isnan(y_pred_orig).sum()}, Inf: {np.isinf(y_pred_orig).sum()}")
@@ -246,9 +235,7 @@ sm.qqplot(residuos_t, line='45', ax=axes[0, 2])
 axes[0, 2].set_title('Q-Q Plot (Residuos Transformados)')
 
 # 3. Residuos vs valores ajustados
-# CORREGIDO
-# CÓDIGO CORREGIDO:
-axes[1, 0].scatter(model.fittedvalues, residuos_t.values, alpha=0.5, s=20)
+axes[1, 0].scatter(y_pred_t, residuos_t, alpha=0.5, s=20)
 axes[1, 0].axhline(y=0, color='r', linestyle='--')
 axes[1, 0].set_xlabel('Valores ajustados')
 axes[1, 0].set_ylabel('Residuos')
