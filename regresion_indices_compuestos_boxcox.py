@@ -69,16 +69,24 @@ print(f"y_transformada - media: {y_transformed.mean():.2f}, desv.est: {y_transfo
 # ==========================================
 # 4. DIVIDIR EN TRAIN/TEST
 # ==========================================
-X_train, X_test, y_train_t, y_test_t = train_test_split(
-    X, y_transformed, test_size=0.2, random_state=42
+X_train, X_test, y_train_t, y_test_t, indices_train, indices_test = train_test_split(
+    X, y_transformed, y.index, test_size=0.2, random_state=42
 )
 
-# Mantener copia de y original para comparación
-y_train_orig = y[X_train.index]
-y_test_orig = y[X_test.index]
+# Mantener copia de y original para comparación - usar índices originales
+y_train_orig = y[indices_train].values
+y_test_orig = y[indices_test].values
 
 print(f"\nTrain size: {len(X_train)}")
 print(f"Test size: {len(X_test)}")
+
+# Resetear índices para consistencia
+X_train = X_train.reset_index(drop=True)
+X_test = X_test.reset_index(drop=True)
+y_train_t = pd.Series(y_train_t, index=range(len(y_train_t)))
+y_test_t = pd.Series(y_test_t, index=range(len(y_test_t)))
+y_train_orig = pd.Series(y_train_orig, index=range(len(y_train_orig)))
+y_test_orig = pd.Series(y_test_orig, index=range(len(y_test_orig)))
 
 # ==========================================
 # 5. ENTRENAR MODELO CON Y TRANSFORMADA
@@ -88,18 +96,18 @@ print("MODELO DE REGRESIÓN (CON Y TRANSFORMADA)")
 print("="*60)
 
 # Agregar constante
-X_train_const = sm.add_constant(X_train.reset_index(drop=True))
-X_test_const = sm.add_constant(X_test.reset_index(drop=True))
+X_train_const = sm.add_constant(X_train)
+X_test_const = sm.add_constant(X_test)
 
 # Entrenar
-model = sm.OLS(y_train_t.reset_index(drop=True), X_train_const).fit()
+model = sm.OLS(y_train_t, X_train_const).fit()
 print(model.summary())
 
 # Predicciones en escala transformada
 y_pred_t = model.predict(X_test_const)
 
 # R2 en escala transformada
-r2_transformada = r2_score(y_test_t.reset_index(drop=True), y_pred_t)
+r2_transformada = r2_score(y_test_t, y_pred_t)
 print(f"\nR² (escala transformada): {r2_transformada:.6f}")
 
 # ==========================================
@@ -138,10 +146,9 @@ if np.isnan(y_pred_orig).any() or np.isinf(y_pred_orig).any():
     y_pred_orig[np.isnan(y_pred_orig)] = y.mean()
 
 # Métricas en escala original
-y_test_orig_reset = y_test_orig.reset_index(drop=True)
-r2_original = r2_score(y_test_orig_reset, y_pred_orig)
-mae_original = mean_absolute_error(y_test_orig_reset, y_pred_orig)
-mse_original = mean_squared_error(y_test_orig_reset, y_pred_orig)
+r2_original = r2_score(y_test_orig, y_pred_orig)
+mae_original = mean_absolute_error(y_test_orig, y_pred_orig)
+mse_original = mean_squared_error(y_test_orig, y_pred_orig)
 rmse_original = np.sqrt(mse_original)
 
 print(f"\nMétricas en escala original:")
@@ -225,13 +232,13 @@ fig, axes = plt.subplots(2, 3, figsize=(15, 10))
 fig.suptitle('Diagnóstico: Regresión con Box-Cox (Y Transformada)', fontsize=16, fontweight='bold')
 
 # 1. Distribución Y original vs transformada
-axes[0, 0].hist(y_test_orig_reset, bins=50, alpha=0.7, label='Original', color='blue', edgecolor='black')
+axes[0, 0].hist(y_test_orig, bins=50, alpha=0.7, label='Original', color='blue', edgecolor='black')
 axes[0, 0].set_xlabel('Valor')
 axes[0, 0].set_ylabel('Frecuencia')
 axes[0, 0].set_title('Y Original')
 axes[0, 0].legend()
 
-axes[0, 1].hist(y_test_t.reset_index(drop=True), bins=50, alpha=0.7, label='Box-Cox', color='green', edgecolor='black')
+axes[0, 1].hist(y_test_t, bins=50, alpha=0.7, label='Box-Cox', color='green', edgecolor='black')
 axes[0, 1].set_xlabel('Valor')
 axes[0, 1].set_ylabel('Frecuencia')
 axes[0, 1].set_title(f'Y Transformada (λ={lambda_param:.3f})')
@@ -241,26 +248,24 @@ axes[0, 1].legend()
 sm.qqplot(residuos_t, line='45', ax=axes[0, 2])
 axes[0, 2].set_title('Q-Q Plot (Residuos Transformados)')
 
-# 3. Residuos vs valores ajustados (CORREGIDO: usar índices consistentes)
-y_pred_t_reset = y_pred_t.reset_index(drop=True)
-residuos_t_reset = residuos_t.reset_index(drop=True)
-axes[1, 0].scatter(y_pred_t_reset, residuos_t_reset, alpha=0.5, s=20)
+# 3. Residuos vs valores ajustados
+axes[1, 0].scatter(y_pred_t.values, residuos_t.values, alpha=0.5, s=20)
 axes[1, 0].axhline(y=0, color='r', linestyle='--')
 axes[1, 0].set_xlabel('Valores ajustados')
 axes[1, 0].set_ylabel('Residuos')
 axes[1, 0].set_title('Homocedasticidad (Escala Transformada)')
 
 # 4. Predicciones vs valores reales (escala original)
-axes[1, 1].scatter(y_test_orig_reset, y_pred_orig, alpha=0.5, s=20)
-axes[1, 1].plot([y_test_orig_reset.min(), y_test_orig_reset.max()], 
-                [y_test_orig_reset.min(), y_test_orig_reset.max()], 
+axes[1, 1].scatter(y_test_orig, y_pred_orig, alpha=0.5, s=20)
+axes[1, 1].plot([y_test_orig.min(), y_test_orig.max()], 
+                [y_test_orig.min(), y_test_orig.max()], 
                 'r--', lw=2)
 axes[1, 1].set_xlabel('Valor Real')
 axes[1, 1].set_ylabel('Predicción')
 axes[1, 1].set_title(f'Predicciones vs Reales (Escala Original)\nR²={r2_original:.4f}')
 
 # 5. Histograma residuos
-axes[1, 2].hist(residuos_t_reset, bins=50, alpha=0.7, edgecolor='black', color='orange')
+axes[1, 2].hist(residuos_t.values, bins=50, alpha=0.7, edgecolor='black', color='orange')
 axes[1, 2].set_xlabel('Residuos')
 axes[1, 2].set_ylabel('Frecuencia')
 axes[1, 2].set_title('Distribución de Residuos (Transformados)')
