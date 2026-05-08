@@ -8,13 +8,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import boxcox
+from scipy.special import inv_boxcox  # <--- CORRECCIÓN 1: Importar función nativa para invertir
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 import statsmodels.api as sm
-from statsmodels.stats.diagnostic import linear_rainbow
+from statsmodels.stats.diagnostic import linear_rainbow, het_breuschpagan
 from statsmodels.stats.outliers_influence import variance_inflation_factor
-from statsmodels.stats.stattools import durbin_watson, jarque_bera, het_breuschpagan
+from statsmodels.stats.stattools import durbin_watson, jarque_bera
+import warnings
+warnings.filterwarnings('ignore')
 
 # ==========================================
 # 1. CARGAR DATOS
@@ -41,8 +44,8 @@ y = df['salud_general_latente'].copy()
 
 # Eliminar valores faltantes
 mask = (~X.isna().any(axis=1)) & (~y.isna())
-X = X[mask]
-y = y[mask]
+X = X[mask].reset_index(drop=True)
+y = y[mask].reset_index(drop=True)
 
 print(f"Datos limpios: {len(X)} observaciones")
 
@@ -54,13 +57,11 @@ print("TRANSFORMACIÓN BOX-COX")
 print("="*60)
 
 # Box-Cox requiere valores positivos
-if (y <= 0).any():
-    y_positive = y - y.min() + 1
-else:
-    y_positive = y.copy()
+y_min = y.min()
+y_shifted = y - y_min + 0.1  # Agregar pequeño offset para asegurar positividad
 
 # Encontrar la transformación óptima
-y_transformed, lambda_param = boxcox(y_positive)
+y_transformed, lambda_param = boxcox(y_shifted)
 
 print(f"Parámetro lambda óptimo: {lambda_param:.4f}")
 print(f"y_original - media: {y.mean():.2f}, desv.est: {y.std():.2f}")
@@ -69,15 +70,24 @@ print(f"y_transformada - media: {y_transformed.mean():.2f}, desv.est: {y_transfo
 # ==========================================
 # 4. DIVIDIR EN TRAIN/TEST
 # ==========================================
-X_train, X_test, y_train_t, y_test_t = train_test_split(
-    X, y_transformed, test_size=0.2, random_state=42
+X_train, X_test, y_train_t, y_test_t, indices_train, indices_test = train_test_split(
+    X, y_transformed, y.index, test_size=0.2, random_state=42
 )
 
-# Mantener copia de y original para comparación
-y_train_orig, y_test_orig = y[X_train.index], y[X_test.index]
+# Mantener copia de y original para comparación - usar índices originales
+y_train_orig = y[indices_train].values
+y_test_orig = y[indices_test].values
 
 print(f"\nTrain size: {len(X_train)}")
 print(f"Test size: {len(X_test)}")
+
+# Resetear índices para consistencia
+X_train = X_train.reset_index(drop=True)
+X_test = X_test.reset_index(drop=True)
+y_train_t = pd.Series(y_train_t, index=range(len(y_train_t)))
+y_test_t = pd.Series(y_test_t, index=range(len(y_test_t)))
+y_train_orig = pd.Series(y_train_orig, index=range(len(y_train_orig)))
+y_test_orig = pd.Series(y_test_orig, index=range(len(y_test_orig)))
 
 # ==========================================
 # 5. ENTRENAR MODELO CON Y TRANSFORMADA
@@ -108,15 +118,29 @@ print("\n" + "="*60)
 print("INVERSIÓN DE LA TRANSFORMACIÓN")
 print("="*60)
 
-# Función para invertir Box-Cox
-if abs(lambda_param) < 1e-10:
-    y_pred_orig = np.exp(y_pred_t)
-else:
-    y_pred_orig = np.power(y_pred_t * lambda_param + 1, 1/lambda_param)
+# CORRECCIÓN 2: Función optimizada para evitar errores matemáticos (NaN/Inf)
+def inverse_boxcox(y_transformed, lambda_param, y_shift):
+    """
+    Invierte la transformación Box-Cox usando la librería scipy
+    """
+    y_inverted = inv_boxcox(y_transformed, lambda_param)
+    
+    # Deshacer el shift original
+    y_original = y_inverted + y_shift
+    
+    return y_original
 
-# Ajustar offset si lo aplicamos
-if (y <= 0).any():
-    y_pred_orig = y_pred_orig + y.min() - 1
+# Invertir predicciones
+y_pred_orig = inverse_boxcox(y_pred_t.values, lambda_param, y_min - 0.1)
+
+# Asegurar que no hay NaN ni infinitos
+print(f"Valores predichos - NaN: {np.isnan(y_pred_orig).sum()}, Inf: {np.isinf(y_pred_orig).sum()}")
+
+# Si hay valores problemáticos, usar clipping
+if np.isnan(y_pred_orig).any() or np.isinf(y_pred_orig).any():
+    print("⚠ Se detectaron NaN o Inf. Reemplazando con valores válidos...")
+    y_pred_orig = np.clip(y_pred_orig, y.min(), y.max())
+    y_pred_orig[np.isnan(y_pred_orig)] = y.mean()
 
 # Métricas en escala original
 r2_original = r2_score(y_test_orig, y_pred_orig)
@@ -145,22 +169,27 @@ try:
     print(f"1. LINEALIDAD (Ramsey RESET)")
     print(f"   Estadístico: {reset_result[0]:.4f}")
     print(f"   p-valor: {reset_result[1]:.6f}")
-    print(f"   Cumple: {reset_result[1] > 0.05}")
-except:
-    print(f"1. LINEALIDAD: No se pudo calcular")
+    linealidad_cumple = reset_result[1] > 0.05
+    print(f"   Cumple: {linealidad_cumple}")
+except Exception as e:
+    print(f"1. LINEALIDAD: No se pudo calcular ({str(e)[:50]})")
+    reset_result = (np.nan, np.nan)
+    linealidad_cumple = None
 
 # 2. INDEPENDENCIA (Durbin-Watson)
 dw = durbin_watson(residuos_t)
 print(f"\n2. INDEPENDENCIA (Durbin-Watson)")
 print(f"   Estadístico: {dw:.4f} (rango: 0-4, ideal: ~2)")
-print(f"   Cumple: {1.5 < dw < 2.5}")
+independencia_cumple = 1.5 < dw < 2.5
+print(f"   Cumple: {independencia_cumple}")
 
 # 3. HOMOCEDASTICIDAD (Breusch-Pagan)
 bp_test = het_breuschpagan(residuos_t, X_train_const)
 print(f"\n3. HOMOCEDASTICIDAD (Breusch-Pagan)")
 print(f"   Estadístico LM: {bp_test[0]:.4f}")
 print(f"   p-valor: {bp_test[1]:.6f}")
-print(f"   Cumple: {bp_test[1] > 0.05}")
+homocedasticidad_cumple = bp_test[1] > 0.05
+print(f"   Cumple: {homocedasticidad_cumple}")
 
 # 4. NORMALIDAD (Jarque-Bera)
 jb_test = jarque_bera(residuos_t)
@@ -169,15 +198,12 @@ print(f"   Estadístico: {jb_test[0]:.4f}")
 print(f"   p-valor: {jb_test[1]:.6f}")
 print(f"   Asimetría: {jb_test[2]:.4f}")
 print(f"   Curtosis: {jb_test[3]:.4f}")
-print(f"   Cumple: {jb_test[1] > 0.05}")
+normalidad_cumple = jb_test[1] > 0.05
+print(f"   Cumple: {normalidad_cumple}")
 
 # Verificar cuántos supuestos se cumplen
-supuestos_cumplidos = sum([
-    reset_result[1] > 0.05,
-    1.5 < dw < 2.5,
-    bp_test[1] > 0.05,
-    jb_test[1] > 0.05
-])
+supuestos_list = [linealidad_cumple, independencia_cumple, homocedasticidad_cumple, normalidad_cumple]
+supuestos_cumplidos = sum([x for x in supuestos_list if x is not None])
 print(f"\n✓ Supuestos cumplidos: {supuestos_cumplidos}/4")
 
 # ==========================================
@@ -220,7 +246,9 @@ sm.qqplot(residuos_t, line='45', ax=axes[0, 2])
 axes[0, 2].set_title('Q-Q Plot (Residuos Transformados)')
 
 # 3. Residuos vs valores ajustados
-axes[1, 0].scatter(y_pred_t, residuos_t, alpha=0.5, s=20)
+# CORREGIDO
+# CÓDIGO CORREGIDO:
+axes[1, 0].scatter(model.fittedvalues, residuos_t.values, alpha=0.5, s=20)
 axes[1, 0].axhline(y=0, color='r', linestyle='--')
 axes[1, 0].set_xlabel('Valores ajustados')
 axes[1, 0].set_ylabel('Residuos')
@@ -236,7 +264,7 @@ axes[1, 1].set_ylabel('Predicción')
 axes[1, 1].set_title(f'Predicciones vs Reales (Escala Original)\nR²={r2_original:.4f}')
 
 # 5. Histograma residuos
-axes[1, 2].hist(residuos_t, bins=50, alpha=0.7, edgecolor='black', color='orange')
+axes[1, 2].hist(residuos_t.values, bins=50, alpha=0.7, edgecolor='black', color='orange')
 axes[1, 2].set_xlabel('Residuos')
 axes[1, 2].set_ylabel('Frecuencia')
 axes[1, 2].set_title('Distribución de Residuos (Transformados)')
@@ -268,31 +296,31 @@ resultados = {
         "rmse": float(rmse_original)
     },
     "coeficientes_escala_transformada": {var: float(coef) for var, coef in coeficientes.items()},
-    "intercept_escala_transformada": float(model.params[0]),
+    "intercept_escala_transformada": float(model.params['const']), # <--- CORRECCIÓN 3: Evitar Deprecation Warning de Pandas
     "supuestos": {
         "linealidad": {
             "prueba": "Ramsey RESET",
-            "p_valor": float(reset_result[1]),
-            "cumple": bool(reset_result[1] > 0.05)
+            "p_valor": float(reset_result[1]) if not np.isnan(reset_result[1]) else None,
+            "cumple": linealidad_cumple
         },
         "independencia": {
             "prueba": "Durbin-Watson",
             "estadistico": float(dw),
-            "cumple": bool(1.5 < dw < 2.5)
+            "cumple": independencia_cumple
         },
         "homocedasticidad": {
             "prueba": "Breusch-Pagan",
             "p_valor": float(bp_test[1]),
-            "cumple": bool(bp_test[1] > 0.05)
+            "cumple": homocedasticidad_cumple
         },
         "normalidad": {
             "prueba": "Jarque-Bera",
             "p_valor": float(jb_test[1]),
             "asimetria": float(jb_test[2]),
             "curtosis": float(jb_test[3]),
-            "cumple": bool(jb_test[1] > 0.05)
+            "cumple": normalidad_cumple
         },
-        "total_cumplidos": int(supuestos_cumplidos)
+        "total_cumplidos": supuestos_cumplidos
     },
     "comparacion_con_anterior": {
         "nota": "Comparar con metricas_indices_compuestos.json",
@@ -322,10 +350,10 @@ print("  Supuestos (4):    1/4")
 
 print("\nMODELO CON BOX-COX (transformado):")
 print(f"  R²:               {r2_original:.4f}")
-print(f"  Linealidad:       {reset_result[1] > 0.05}")
-print(f"  Independencia:    {1.5 < dw < 2.5}")
-print(f"  Homocedasticidad: {bp_test[1] > 0.05}")
-print(f"  Normalidad:       {jb_test[1] > 0.05}")
+print(f"  Linealidad:       {linealidad_cumple}")
+print(f"  Independencia:    {independencia_cumple}")
+print(f"  Homocedasticidad: {homocedasticidad_cumple}")
+print(f"  Normalidad:       {normalidad_cumple}")
 print(f"  Supuestos (4):    {supuestos_cumplidos}/4")
 
 print("\n✓ Script completado exitosamente")

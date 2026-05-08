@@ -1,0 +1,34 @@
+{
+    "metricas": {
+        "r2": 0.9534,
+        "mae": 1.5999,
+        "rmse": 2.009
+    },
+    "coeficientes": [
+        {
+            "variable": "indice_sueno_salud_mental",
+            "coeficiente": 2.001877219387273
+        },
+        {
+            "variable": "indice_alimentacion",
+            "coeficiente": 1.7907716798153108
+        },
+        {
+            "variable": "indice_actividad_fisica",
+            "coeficiente": 1.4953802165561392
+        },
+        {
+            "variable": "indice_socioeconomico_ambiental",
+            "coeficiente": 1.1939485786696828
+        },
+        {
+            "variable": "hipertension",
+            "coeficiente": -12.01006886334408
+        },
+        {
+            "variable": "diabetes",
+            "coeficiente": -15.009215677559324
+        }
+    ],
+    "formula": "Salud = 35.12 + (2.00 * indice_sueno_salud_mental) + (1.50 * indice_actividad_fisica) + (1.79 * indice_alimentacion) + (1.19 * indice_socioeconomico_ambiental) + (-12.01 * hipertension) + (-15.01 * diabetes)"
+}

@@ -1246,6 +1246,71 @@ def make_regularization_plot(rank_df: pd.DataFrame, value_col: str, title: str, 
     plt.close()
 
 
+def make_regularization_paths(
+    X_train_processed: np.ndarray,
+    y_train: pd.Series,
+    feature_names: list[str],
+) -> None:
+
+    from sklearn.linear_model import Ridge, Lasso
+
+    alphas = np.logspace(-3, 3, 100)
+
+    # =========================
+    # RIDGE
+    # =========================
+    ridge_coefs = []
+
+    for alpha in alphas:
+        model = Ridge(alpha=alpha)
+        model.fit(X_train_processed, y_train)
+        ridge_coefs.append(model.coef_)
+
+    ridge_coefs = np.array(ridge_coefs)
+
+    plt.figure(figsize=(12, 7))
+
+    for i in range(ridge_coefs.shape[1]):
+        plt.plot(alphas, ridge_coefs[:, i], linewidth=1)
+
+    plt.xscale("log")
+    plt.xlabel("Alpha (regularizacion)")
+    plt.ylabel("Coeficiente")
+    plt.title("Trayectoria de coeficientes Ridge")
+    plt.axhline(0, color="black", linewidth=1)
+
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / "25_trayectoria_coeficientes_ridge.png", dpi=180)
+    plt.close()
+
+    # =========================
+    # LASSO
+    # =========================
+    lasso_coefs = []
+
+    for alpha in alphas:
+        model = Lasso(alpha=alpha, max_iter=20000)
+        model.fit(X_train_processed, y_train)
+        lasso_coefs.append(model.coef_)
+
+    lasso_coefs = np.array(lasso_coefs)
+
+    plt.figure(figsize=(12, 7))
+
+    for i in range(lasso_coefs.shape[1]):
+        plt.plot(alphas, lasso_coefs[:, i], linewidth=1)
+
+    plt.xscale("log")
+    plt.xlabel("Alpha (regularizacion)")
+    plt.ylabel("Coeficiente")
+    plt.title("Trayectoria de coeficientes Lasso")
+    plt.axhline(0, color="black", linewidth=1)
+
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / "26_trayectoria_coeficientes_lasso.png", dpi=180)
+    plt.close()
+
+
 def make_regression_diagnostics_plot(model: sm.regression.linear_model.RegressionResultsWrapper) -> None:
     resid_series = pd.Series(model.resid)
     fitted_series = pd.Series(model.fittedvalues)
@@ -1430,6 +1495,12 @@ def build_multiple_linear_regression(df: pd.DataFrame) -> dict[str, object]:
         "20_ridge_importancia.png",
         "#4c72b0",
     )
+
+    # --- INVOCACIÓN DE LA FUNCIÓN PARA LAS GRÁFICAS DE TRAYECTORIA ---
+    X_train_processed = ridge_model.named_steps["preprocess"].transform(X_train)
+    make_regularization_paths(X_train_processed, y_train, list(ridge_feature_names))
+    # -------------------------------------------------------------------
+
     ridge_priority_features = ridge_rank.head(12)["variable"].tolist()
     ridge_priority_set = set(ridge_rank.head(15)["variable"].tolist())
     lasso_selected_set = set(lasso_selected_features)
@@ -1581,6 +1652,7 @@ def build_multiple_linear_regression(df: pd.DataFrame) -> dict[str, object]:
         key=lambda row: row["estadistico_f"],
         reverse=True,
     )[:5]
+    
 
     excluded_variables = {
         "sexo": "Lasso y Ridge mostraron un aporte incremental menor frente a habitos y condiciones clinicas.",
@@ -1989,7 +2061,7 @@ def write_markdown_report(summary: dict[str, object]) -> None:
 
 ## Alcance
 
-- Se usaron tablas agregadas de ENSANUT ubicadas en `C:\\Users\\edluj\\OneDrive\\Documentos\\actividades datos\\avance de proyecto\\data`.
+- Se usaron tablas agregadas de ENSANUT ubicadas en `{INPUT_DIR}`.
 - La carpeta no contiene respuestas individuales para sueno, actividad fisica, azucar, alcohol, tabaco o tiempo en pantalla.
 - Para responder esas preguntas se genero una poblacion sintetica de {summary["filas_sinteticas"]:,} adultos, calibrada con prevalencias por edad y sexo de obesidad, sobrepeso, depresion, diabetes e hipertension observadas en los CSV.
 
@@ -2184,6 +2256,8 @@ def write_markdown_report(summary: dict[str, object]) -> None:
 - `22_heatmap_correlacion_modelo.png`
 - `23_pairplot_variables_modelo.png`
 - `24_predicciones_vs_reales.png`
+- `25_trayectoria_coeficientes_ridge.png`
+- `26_trayectoria_coeficientes_lasso.png`
 - `predicciones_prueba_regresion.csv`
 - `salud_mexico_sintetica_75000.csv`
 - `metricas_resumen.json`
@@ -2299,6 +2373,7 @@ def build_final_linear_pipeline() -> Pipeline:
         ]
     )
     return Pipeline([("preprocess", preprocessor), ("model", LinearRegression())])
+
 
 
 def build_linear_equation(model: Pipeline) -> str:
@@ -2544,6 +2619,8 @@ def main() -> None:
     print("- 22_heatmap_correlacion_modelo.png")
     print("- 23_pairplot_variables_modelo.png")
     print("- 24_predicciones_vs_reales.png")
+    print("- 25_trayectoria_coeficientes_ridge.png")
+    print("- 26_trayectoria_coeficientes_lasso.png")
     print("- predicciones_prueba_regresion.csv")
 
 

@@ -1,0 +1,35 @@
+{
+  "metodo": "Regresion con Box-Cox",
+  "descripcion": "Se aplic\u00f3 transformaci\u00f3n Box-Cox a la variable dependiente para cumplir supuestos de regresi\u00f3n",
+  "lambda_boxcox": 1.5974362125919968,
+  "variables_independientes": [
+    "indice_sueno_salud_mental",
+    "indice_actividad_corporal",
+    "indice_habitos_saludables",
+    "indice_contexto_socioambiental",
+    "indice_carga_clinica"
+  ],
+  "train_test_split": {
+    "train_size": 60000,
+    "test_size": 15000,
+    "test_proportion": 0.2
+  },
+  "metricas_test": {
+    "r2": 0.8411027955319448,
+    "mae": 5.638712482331901,
+    "mse": 108.46101211379546,
+    "rmse": 10.41446168142144
+  },
+  "coeficientes_escala_transformada": {
+    "indice_sueno_salud_mental": 150.81626216421682,
+    "indice_actividad_corporal": 169.1228292258392,
+    "indice_habitos_saludables": 104.8617791660839,
+    "indice_contexto_socioambiental": 103.45347784912742,
+    "indice_carga_clinica": 128.9270163636199
+  },
+  "intercept_escala_transformada": 812.894499561475,
+  "supuestos": {
+    "linealidad": {
+      "prueba": "Ramsey RESET",
+      "p_valor": 0.44457483202694303,
+      "cumple": 

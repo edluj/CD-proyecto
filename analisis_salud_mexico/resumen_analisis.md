@@ -193,6 +193,8 @@
 - `22_heatmap_correlacion_modelo.png`
 - `23_pairplot_variables_modelo.png`
 - `24_predicciones_vs_reales.png`
+- `25_trayectoria_coeficientes_ridge.png`
+- `26_trayectoria_coeficientes_lasso.png`
 - `predicciones_prueba_regresion.csv`
 - `salud_mexico_sintetica_75000.csv`
 - `metricas_resumen.json`
